@@ -166,6 +166,25 @@ td.rot{font-family:"Archivo",sans-serif;font-weight:500}
 .cepea-tab h4{font-family:"Archivo",sans-serif;font-size:14px;font-weight:700;color:var(--folha);margin:0 0 2px}
 .cepea-tab .un{font-size:11.5px;color:var(--tinta-suave);margin:0 0 8px}
 .destaque{background:#F0F6EE}
+.tm-indice input[type=search]{width:100%;font:inherit;font-size:13.5px;padding:9px 11px;border:1px solid var(--linha);
+  border-radius:10px;background:var(--branco);margin-bottom:6px}
+.tm-contagem{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--tinta-suave);margin:0 0 12px!important;
+  letter-spacing:.04em!important;text-transform:none!important}
+.tm-grupo{margin:14px 0 6px!important}
+.tm-indice ol{counter-reset:none}
+.tm-indice li{counter-increment:none}
+.tm-indice a::before{content:"·"!important;color:var(--farinha)}
+.tm-titulo-grupo{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--farinha);margin:30px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--polvilho-2)}
+.tm-titulo-grupo:first-of-type{margin-top:6px}
+.tm-card{scroll-margin-top:16px}
+.tm-card h2{font-size:22px}
+.tm-rot{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--folha);display:block;margin-bottom:4px}
+.tm-frase{font-size:16px;line-height:1.55;background:var(--polvilho);border-left:4px solid var(--folha-viva);
+  border-radius:0 10px 10px 0;padding:12px 16px;margin:10px 0 4px}
+.tm-ver{margin-top:4px}
+.tm-card.oculto,.tm-titulo-grupo.oculto{display:none}
 .ebook-topo{max-width:1400px;margin:0 auto;padding:22px 22px 12px;display:flex;gap:18px;
   align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
 .ebook-rot{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
@@ -174,7 +193,7 @@ td.rot{font-family:"Archivo",sans-serif;font-weight:500}
   font-weight:700;font-size:clamp(19px,2.6vw,27px);margin:0;letter-spacing:-.015em;max-width:60ch}
 .ebook-acoes{display:flex;gap:8px;flex-wrap:wrap}
 .ebook-quadro{max-width:1400px;margin:0 auto 26px;padding:0 22px}
-.ebook-quadro iframe{width:100%;height:calc(100vh - 210px);min-height:520px;border:1px solid var(--linha);
+.ebook-quadro iframe{width:100%;height:calc(100vh - 190px);min-height:440px;border:1px solid var(--linha);
   border-radius:14px;background:var(--branco);box-shadow:var(--sombra);display:block}
 .abas{display:flex;gap:6px;max-width:1400px;margin:0 auto;padding:18px 22px 0}
 .aba{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--linha);border-bottom:0;
@@ -264,9 +283,9 @@ footer ul{margin:0;padding-left:18px} footer li{margin-bottom:4px}
 <header>
   <div class="header-inner">
     <div class="marca">
-      <p class="eyebrow">Painel de decisão · Agroindústria da Mandioca</p>
-      <h1>Modelagem de Negócios - <em>Associação de Produtores de Mandioca</em></h1>
-      <p class="sub">Raiz comprada do associado, processamento e comercialização: modelo de negócios, simulações, cenários, preço, rendimento de processamento, canais de venda, prazos de recebimento, tributos, financiamento e risco em um só painel.</p>
+      <p class="eyebrow">Painel de decisão · casa de farinha</p>
+      <h1>Simulador gerencial da <em>Associação de Produtores de Mandioca</em></h1>
+      <p class="sub">Da raiz comprada do associado até a sobra distribuída em assembleia: preço, rendimento de processamento, canais de venda, prazos de recebimento, tributos, financiamento e risco em um só painel.</p>
     </div>
     <svg class="raizes" viewBox="0 0 190 118" aria-hidden="true">
       <g fill="none" stroke="#4FA96A" stroke-width="2.2" stroke-linecap="round">
@@ -286,9 +305,10 @@ footer ul{margin:0;padding-left:18px} footer li{margin-bottom:4px}
 
 <main>
 <div class="abas" role="tablist">
-  <button class="aba" id="aba-btn-sim" role="tab" aria-selected="true" type="button">Simulador</button>
-  <button class="aba" id="aba-btn-man" role="tab" aria-selected="false" type="button">Manual e ajuda</button>
   <button class="aba" id="aba-btn-eb" role="tab" aria-selected="false" type="button">e-Book Abrinco</button>
+  <button class="aba" id="aba-btn-termos" role="tab" aria-selected="false" type="button">Termos do e-Book</button>
+  <button class="aba" id="aba-btn-sim" role="tab" aria-selected="true" type="button">Simulador</button>
+  <button class="aba" id="aba-btn-man" role="tab" aria-selected="false" type="button">Manual Simulador</button>
 </div>
 
 <div id="aba-simulador">
@@ -884,6 +904,24 @@ footer ul{margin:0;padding-left:18px} footer li{margin-bottom:4px}
       <p>Fonte: Cepea/Esalq-USP, dados sob licença CC BY-NC 4.0, uso não comercial com citação.</p>
     </section>
 
+    <section class="bloco" id="aj-ebook" data-titulo="e-Book e termos">
+      <h2>e-Book e termos</h2>
+      <p>A aba <b>e-Book Abrinco</b> traz a publicação <i>Da Roça ao Mercado</i> como apresentação interativa, na edição revista de 2026: a Abrinco aparece como associação e cooperativa, e o uso exclusivo de mandioca de mesa está registrado.</p>
+      <div class="rolagem"><table class="aj-tab">
+        <thead><tr><th>Controle</th><th>O que faz</th></tr></thead>
+        <tbody>
+          <tr><td class="rot">Setas ‹ ›</td><td>Nas laterais da página e na barra inferior: folheiam uma página por vez. No teclado, ← e →; no celular, deslize para os lados.</td></tr>
+          <tr><td class="rot">Barra de páginas</td><td>Arraste para saltar direto a qualquer uma das 81 páginas; o contador mostra onde você está.</td></tr>
+          <tr><td class="rot">Sumário</td><td>Lista suspensa com o título de cada página.</td></tr>
+          <tr><td class="rot">Zoom</td><td>Botões − e +, teclas − e +, ou Ctrl + roda do mouse. Com zoom alto, use as barras de rolagem para percorrer a página.</td></tr>
+          <tr><td class="rot">Página · Largura</td><td>Ajustam a página inteira à tela (tecla 0) ou à largura da tela (tecla W).</td></tr>
+          <tr><td class="rot">Folhear · Rolagem</td><td>Uma página por vez, ou todas em sequência com rolagem contínua.</td></tr>
+          <tr><td class="rot">Tela cheia</td><td>Botão ⛶ ou tecla F — útil para apresentar em reunião com projetor.</td></tr>
+        </tbody>
+      </table></div>
+      <p>A aba <b>Termos do e-Book</b> explica 30 termos em seis grupos — modelo de negócio, território e qualidade, mercados públicos, finanças, produção e cooperativismo. Cada termo tem uma frase, um passo a passo e a aplicação na Abrinco; o botão <b>Ver no e-book</b> abre a apresentação na página correspondente.</p>
+    </section>
+
     <section class="bloco" id="aj-erros" data-titulo="Erros comuns">
       <h2>Erros comuns</h2>
       <p>Se o resultado parecer estranho, a causa quase sempre está aqui.</p>
@@ -923,11 +961,106 @@ footer ul{margin:0;padding-left:18px} footer li{margin-bottom:4px}
 </div>
 </div>
 
+<div id="aba-termos" class="aba-oculta">
+<div class="manual">
+  <nav class="man-indice tm-indice">
+    <input type="search" id="tm-busca" placeholder="Buscar termo…" aria-label="Buscar termo">
+    <p id="tm-contagem" class="tm-contagem"></p>
+<p class="tm-grupo">Modelo de negócio</p><ol>
+<li><a href="#tm-canvas" data-tm="canvas">Canvas (modelo de negócios)</a></li>
+<li><a href="#tm-proposta" data-tm="proposta">Proposta de valor</a></li>
+<li><a href="#tm-cadeia" data-tm="cadeia">Cadeia produtiva</a></li>
+<li><a href="#tm-swot" data-tm="swot">Matriz SWOT</a></li>
+</ol>
+<p class="tm-grupo">Território, qualidade e rótulo</p><ol>
+<li><a href="#tm-ig" data-tm="ig">Indicação Geográfica (IG)</a></li>
+<li><a href="#tm-bpf" data-tm="bpf">BPF e POP</a></li>
+<li><a href="#tm-rastreab" data-tm="rastreab">Rastreabilidade</a></li>
+<li><a href="#tm-arte" data-tm="arte">Selo ARTE</a></li>
+<li><a href="#tm-classif" data-tm="classif">Classificação da farinha</a></li>
+</ol>
+<p class="tm-grupo">Mercados públicos</p><ol>
+<li><a href="#tm-caf" data-tm="caf">CAF — física e jurídica</a></li>
+<li><a href="#tm-pnae" data-tm="pnae">PNAE</a></li>
+<li><a href="#tm-chamada" data-tm="chamada">Chamada pública e Entidade Executora</a></li>
+<li><a href="#tm-paa" data-tm="paa">PAA</a></li>
+</ol>
+<p class="tm-grupo">Finanças e simulador</p><ol>
+<li><a href="#tm-custos" data-tm="custos">Custo variável e custo fixo</a></li>
+<li><a href="#tm-margem" data-tm="margem">Margem de contribuição</a></li>
+<li><a href="#tm-equilibrio" data-tm="equilibrio">Ponto de equilíbrio</a></li>
+<li><a href="#tm-giro" data-tm="giro">Capital de giro</a></li>
+<li><a href="#tm-tir" data-tm="tir">TIR, TMA e VPL</a></li>
+</ol>
+<p class="tm-grupo">Produção e meio ambiente</p><ol>
+<li><a href="#tm-mesa" data-tm="mesa">Mandioca de mesa e mandioca brava</a></li>
+<li><a href="#tm-goma" data-tm="goma">Goma, polvilho e fécula</a></li>
+<li><a href="#tm-manipueira" data-tm="manipueira">Manipueira</a></li>
+<li><a href="#tm-integral" data-tm="integral">Aproveitamento integral e crueira</a></li>
+<li><a href="#tm-minproc" data-tm="minproc">Minimamente processado</a></li>
+<li><a href="#tm-trl" data-tm="trl">TRL (nível de maturidade tecnológica)</a></li>
+</ol>
+<p class="tm-grupo">Associação e cooperativa</p><ol>
+<li><a href="#tm-duas" data-tm="duas">Associação e cooperativa</a></li>
+<li><a href="#tm-ato" data-tm="ato">Ato cooperativo e ato não cooperativo</a></li>
+<li><a href="#tm-sobras" data-tm="sobras">Sobras, Fundo de Reserva e FATES</a></li>
+<li><a href="#tm-capital" data-tm="capital">Capital social e integralização</a></li>
+<li><a href="#tm-ocb" data-tm="ocb">OCB / Sescoop</a></li>
+<li><a href="#tm-simples" data-tm="simples">Simples Nacional e cooperativas</a></li>
+</ol>
+  </nav>
+  <div class="man-corpo">
+    <section class="bloco tm-abertura">
+      <h2>Termos do e-Book, passo a passo</h2>
+      <p>O e-book da Abrinco usa vocabulário de gestão, de mercados públicos, de tecnologia de alimentos e de cooperativismo. Aqui cada termo aparece explicado em uma frase, depois em passos, e com o que ele significa na prática para a Abrinco. O botão no fim de cada explicação abre a apresentação do e-book na página em que o termo é tratado.</p>
+      <p class="nota" style="margin:0">30 termos em seis grupos. Use a busca à esquerda para filtrar.</p>
+    </section>
+<h3 class="tm-titulo-grupo" id="tg-0">Modelo de negócio</h3>
+<section class="bloco tm-card" id="tm-canvas" data-busca="canvas (modelo de negócios) um quadro de nove blocos que descreve, em uma página, como a organização cria, entrega e ganha dinheiro com o que produz. os nove blocos se dividem em dois lados: o do cliente (segmentos, proposta de valor, canais, relacionamento, receitas) e o da operação (recursos, atividades, parcerias, custos). cada bloco responde a uma pergunta simples — para quem vendemos? o que entregamos de diferente? por onde chegamos ao cliente? — e a resposta cabe em frases curtas. os blocos conversam: mudar a proposta de valor (por exemplo, vender farinha com origem certificada) muda os canais, as parcerias e os custos. o canvas só vira gestão quando cada resposta ganha número, prazo e responsável — é o que as partes 2 e 4 fazem. a diretoria revisa o canvas uma vez por ano, em reunião própria, usando o roteiro do capítulo “como ler e revisar o canvas todo ano”."><h2>Canvas (modelo de negócios)</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Um quadro de nove blocos que descreve, em uma página, como a organização cria, entrega e ganha dinheiro com o que produz.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Os nove blocos se dividem em dois lados: o do cliente (segmentos, proposta de valor, canais, relacionamento, receitas) e o da operação (recursos, atividades, parcerias, custos).</li><li>Cada bloco responde a uma pergunta simples — para quem vendemos? o que entregamos de diferente? por onde chegamos ao cliente? — e a resposta cabe em frases curtas.</li><li>Os blocos conversam: mudar a proposta de valor (por exemplo, vender farinha com origem certificada) muda os canais, as parcerias e os custos.</li><li>O Canvas só vira gestão quando cada resposta ganha número, prazo e responsável — é o que as Partes 2 e 4 fazem.</li></ol><div class="caixa dica"><b>Na Abrinco</b>A diretoria revisa o Canvas uma vez por ano, em reunião própria, usando o roteiro do capítulo “Como ler e revisar o Canvas todo ano”.</div><button type="button" class="btn claro tm-ver" data-pag="O Canvas da Abrinco em uma página">Ver no e-book: O Canvas da Abrinco em uma página &#8594;</button></section>
+<section class="bloco tm-card" id="tm-proposta" data-busca="proposta de valor o motivo pelo qual um cliente prefere comprar da abrinco e não de outro fornecedor. liste o que o cliente ganha: sabor, origem, praticidade, regularidade de entrega, nota fiscal, preço. separe o que é igual ao concorrente do que só a abrinco tem — a origem no vale do copioba e o modo de fazer tradicional, por exemplo. confira se a promessa é cumprida todo mês: proposta que falha na entrega vira reclamação. ajuste a proposta a cada segmento: a merenda escolar valoriza regularidade e documentação; o varejo premium valoriza história e embalagem. aipim de mesa embalado a vácuo, derivados da mesma raiz e origem no recôncavo: uma proposta difícil de copiar por quem compra em volume."><h2>Proposta de valor</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>O motivo pelo qual um cliente prefere comprar da Abrinco e não de outro fornecedor.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Liste o que o cliente ganha: sabor, origem, praticidade, regularidade de entrega, nota fiscal, preço.</li><li>Separe o que é igual ao concorrente do que só a Abrinco tem — a origem no Vale do Copioba e o modo de fazer tradicional, por exemplo.</li><li>Confira se a promessa é cumprida todo mês: proposta que falha na entrega vira reclamação.</li><li>Ajuste a proposta a cada segmento: a merenda escolar valoriza regularidade e documentação; o varejo premium valoriza história e embalagem.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Aipim de mesa embalado a vácuo, derivados da mesma raiz e origem no Recôncavo: uma proposta difícil de copiar por quem compra em volume.</div><button type="button" class="btn claro tm-ver" data-pag="Proposta de valor">Ver no e-book: Proposta de valor &#8594;</button></section>
+<section class="bloco tm-card" id="tm-cadeia" data-busca="cadeia produtiva o caminho completo do produto, da rama plantada até a prateleira, com todas as etapas e quem executa cada uma. desenhe as etapas em ordem: plantio, colheita, transporte da raiz, processamento, embalagem, venda. em cada etapa, anote quanto ela custa e quanto valor acrescenta ao produto. identifique onde o dinheiro fica: segundo o e-book, a maior parte do valor nasce no processamento, na embalagem e na venda. decida quais etapas a organização quer controlar e quais deixa para parceiros. vender raiz é vender trabalho barato; vender aipim embalado, com marca e nota fiscal, captura o valor que a comunidade produz."><h2>Cadeia produtiva</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>O caminho completo do produto, da rama plantada até a prateleira, com todas as etapas e quem executa cada uma.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Desenhe as etapas em ordem: plantio, colheita, transporte da raiz, processamento, embalagem, venda.</li><li>Em cada etapa, anote quanto ela custa e quanto valor acrescenta ao produto.</li><li>Identifique onde o dinheiro fica: segundo o e-book, a maior parte do valor nasce no processamento, na embalagem e na venda.</li><li>Decida quais etapas a organização quer controlar e quais deixa para parceiros.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Vender raiz é vender trabalho barato; vender aipim embalado, com marca e nota fiscal, captura o valor que a comunidade produz.</div><button type="button" class="btn claro tm-ver" data-pag="A cadeia produtiva da mandioca">Ver no e-book: A cadeia produtiva da mandioca &#8594;</button></section>
+<section class="bloco tm-card" id="tm-swot" data-busca="matriz swot uma tabela de quatro quadros que cruza forças e fraquezas internas com oportunidades e ameaças externas. forças e fraquezas são internas: o que a abrinco controla, como equipamentos, qualidade ou gestão. oportunidades e ameaças são externas: mercado, leis, clima, concorrência. cruze os quadros: força com oportunidade vira estratégia de ataque; fraqueza com ameaça vira prioridade de defesa. transforme cada cruzamento em uma ação com prazo — swot sem plano de ação é só diagnóstico. exemplo do e-book: diferenciar pela origem e pela qualidade (força) em vez de competir em preço com farinha industrial (ameaça)."><h2>Matriz SWOT</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Uma tabela de quatro quadros que cruza forças e fraquezas internas com oportunidades e ameaças externas.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Forças e fraquezas são internas: o que a Abrinco controla, como equipamentos, qualidade ou gestão.</li><li>Oportunidades e ameaças são externas: mercado, leis, clima, concorrência.</li><li>Cruze os quadros: força com oportunidade vira estratégia de ataque; fraqueza com ameaça vira prioridade de defesa.</li><li>Transforme cada cruzamento em uma ação com prazo — SWOT sem plano de ação é só diagnóstico.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Exemplo do e-book: diferenciar pela origem e pela qualidade (força) em vez de competir em preço com farinha industrial (ameaça).</div><button type="button" class="btn claro tm-ver" data-pag="Matriz SWOT da Abrinco">Ver no e-book: Matriz SWOT da Abrinco &#8594;</button></section>
+<h3 class="tm-titulo-grupo" id="tg-1">Território, qualidade e rótulo</h3>
+<section class="bloco tm-card" id="tm-ig" data-busca="indicação geográfica (ig) um direito coletivo, registrado no inpi, que reconhece que um produto tem características ligadas ao lugar onde é feito. no brasil há duas espécies: a indicação de procedência, que protege a reputação do lugar, e a denominação de origem, que exige que o meio geográfico explique as qualidades do produto. os produtores se organizam e caracterizam o produto: modo de fazer, variedade, fermentação, forno, ponto de torra, granulometria. instituições técnicas (no caso da copioba, embrapa e ufba desde 2012) fazem análises e instruem o pedido ao inpi. registrada a ig, só quem cumpre as regras pode usar o nome — é por isso que ela agrega valor. participar do processo em vez de apenas aguardá-lo: é a diferença entre vender “farinha” e vender “farinha de copioba do recôncavo”."><h2>Indicação Geográfica (IG)</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Um direito coletivo, registrado no INPI, que reconhece que um produto tem características ligadas ao lugar onde é feito.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>No Brasil há duas espécies: a Indicação de Procedência, que protege a reputação do lugar, e a Denominação de Origem, que exige que o meio geográfico explique as qualidades do produto.</li><li>Os produtores se organizam e caracterizam o produto: modo de fazer, variedade, fermentação, forno, ponto de torra, granulometria.</li><li>Instituições técnicas (no caso da copioba, Embrapa e UFBA desde 2012) fazem análises e instruem o pedido ao INPI.</li><li>Registrada a IG, só quem cumpre as regras pode usar o nome — é por isso que ela agrega valor.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Participar do processo em vez de apenas aguardá-lo: é a diferença entre vender “farinha” e vender “farinha de copioba do Recôncavo”.</div><button type="button" class="btn claro tm-ver" data-pag="Vale do Copioba">Ver no e-book: Vale do Copioba &#8594;</button></section>
+<section class="bloco tm-card" id="tm-bpf" data-busca="bpf e pop bpf são as boas práticas de fabricação, que garantem um alimento seguro; pop é o procedimento operacional padronizado, a instrução escrita de cada tarefa crítica. liste as tarefas que podem contaminar o produto: higiene das mãos, limpeza de equipamentos, controle de pragas, qualidade da água. escreva um pop para cada uma: quem faz, com que produto, em que dosagem, com que frequência. registre a execução em planilha — o que não está anotado, para a vigilância sanitária, não foi feito. revise os pops sempre que mudar equipamento, produto ou pessoa. a licença sanitária, o acesso ao pnae e o selo arte dependem de bpf comprovadas por registro."><h2>BPF e POP</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>BPF são as Boas Práticas de Fabricação, que garantem um alimento seguro; POP é o Procedimento Operacional Padronizado, a instrução escrita de cada tarefa crítica.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Liste as tarefas que podem contaminar o produto: higiene das mãos, limpeza de equipamentos, controle de pragas, qualidade da água.</li><li>Escreva um POP para cada uma: quem faz, com que produto, em que dosagem, com que frequência.</li><li>Registre a execução em planilha — o que não está anotado, para a vigilância sanitária, não foi feito.</li><li>Revise os POPs sempre que mudar equipamento, produto ou pessoa.</li></ol><div class="caixa dica"><b>Na Abrinco</b>A licença sanitária, o acesso ao PNAE e o Selo ARTE dependem de BPF comprovadas por registro.</div><button type="button" class="btn claro tm-ver" data-pag="Qualidade e Boas Práticas">Ver no e-book: Qualidade e Boas Práticas &#8594;</button></section>
+<section class="bloco tm-card" id="tm-rastreab" data-busca="rastreabilidade a capacidade de saber de onde veio e por onde passou cada lote de produto. na entrada, cada lote de raiz recebe ficha com procedência, peso, data e cultivar. no processamento, anote o número do lote de produto gerado a partir daquela raiz. no rótulo, imprima lote e validade. diante de uma reclamação, siga o caminho de volta: do lote no rótulo até a família que entregou a raiz. a ficha de entrada de raiz do capítulo 38 é o ponto de partida — agora com os campos de cultivar de mesa e ciclo."><h2>Rastreabilidade</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>A capacidade de saber de onde veio e por onde passou cada lote de produto.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Na entrada, cada lote de raiz recebe ficha com procedência, peso, data e cultivar.</li><li>No processamento, anote o número do lote de produto gerado a partir daquela raiz.</li><li>No rótulo, imprima lote e validade.</li><li>Diante de uma reclamação, siga o caminho de volta: do lote no rótulo até a família que entregou a raiz.</li></ol><div class="caixa dica"><b>Na Abrinco</b>A ficha de entrada de raiz do Capítulo 38 é o ponto de partida — agora com os campos de cultivar de mesa e ciclo.</div><button type="button" class="btn claro tm-ver" data-pag="Dez práticas que separam">Ver no e-book: Dez práticas que separam &#8594;</button></section>
+<section class="bloco tm-card" id="tm-arte" data-busca="selo arte selo que identifica alimentos artesanais produzidos com técnicas tradicionais e boas práticas, estendido aos produtos de origem vegetal pela lei nº 14.963/2024. confirme que o produto é feito de forma artesanal, com receita e técnica tradicionais. tenha bpf implantadas e registradas. procure o órgão de inspeção ou de vigilância indicado para o seu caso e siga o procedimento de concessão. use o selo no rótulo e na comunicação: ele diferencia de produtos industriais. candidato natural para a farinha e para a goma feitas no modo tradicional do recôncavo."><h2>Selo ARTE</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Selo que identifica alimentos artesanais produzidos com técnicas tradicionais e boas práticas, estendido aos produtos de origem vegetal pela Lei nº 14.963/2024.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Confirme que o produto é feito de forma artesanal, com receita e técnica tradicionais.</li><li>Tenha BPF implantadas e registradas.</li><li>Procure o órgão de inspeção ou de vigilância indicado para o seu caso e siga o procedimento de concessão.</li><li>Use o selo no rótulo e na comunicação: ele diferencia de produtos industriais.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Candidato natural para a farinha e para a goma feitas no modo tradicional do Recôncavo.</div><button type="button" class="btn claro tm-ver" data-pag="Legalização, rótulos e selos">Ver no e-book: Legalização, rótulos e selos &#8594;</button></section>
+<section class="bloco tm-card" id="tm-classif" data-busca="classificação da farinha a legislação classifica a farinha por grupo, classe e cor — três informações que vão obrigatoriamente no rótulo. grupo, pelo processo: seca, d’água (fermentada) ou mista (bijuzada). classe, pela granulometria: fina (passa 100% na malha de 2 mm e no máximo 10% fica retido na de 1 mm), grossa (10% retido na de 2 mm) ou média. cor: branca, amarela (natural ou com açafrão) ou rosa (coloração artificial). meça com peneiras padronizadas em cada lote — o rótulo precisa corresponder ao que está no pacote. padronizar a classe entre lotes é pré-requisito para a indicação geográfica e para contratos regulares."><h2>Classificação da farinha</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>A legislação classifica a farinha por grupo, classe e cor — três informações que vão obrigatoriamente no rótulo.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Grupo, pelo processo: seca, d’água (fermentada) ou mista (bijuzada).</li><li>Classe, pela granulometria: fina (passa 100% na malha de 2 mm e no máximo 10% fica retido na de 1 mm), grossa (10% retido na de 2 mm) ou média.</li><li>Cor: branca, amarela (natural ou com açafrão) ou rosa (coloração artificial).</li><li>Meça com peneiras padronizadas em cada lote — o rótulo precisa corresponder ao que está no pacote.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Padronizar a classe entre lotes é pré-requisito para a Indicação Geográfica e para contratos regulares.</div><button type="button" class="btn claro tm-ver" data-pag="Farinha: classificação">Ver no e-book: Farinha: classificação &#8594;</button></section>
+<h3 class="tm-titulo-grupo" id="tg-2">Mercados públicos</h3>
+<section class="bloco tm-card" id="tm-caf" data-busca="caf — física e jurídica cadastro nacional da agricultura familiar, que substituiu a dap. existe para o agricultor (pessoa física) e para a organização (pessoa jurídica). cada família faz sua caf pessoa física junto a um órgão emissor credenciado. com mais da metade dos membros com caf ativa, a organização pode emitir a caf jurídica. a caf jurídica habilita a venda em pnae, paa e o acesso ao pronaf. mantenha as caf em dia: cadastro vencido tira o associado — e o volume dele — do contrato. com a cooperativa constituída, a caf jurídica em nome da cooperativa é um dos primeiros registros a conferir."><h2>CAF — física e jurídica</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Cadastro Nacional da Agricultura Familiar, que substituiu a DAP. Existe para o agricultor (pessoa física) e para a organização (pessoa jurídica).</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Cada família faz sua CAF pessoa física junto a um órgão emissor credenciado.</li><li>Com mais da metade dos membros com CAF ativa, a organização pode emitir a CAF Jurídica.</li><li>A CAF Jurídica habilita a venda em PNAE, PAA e o acesso ao Pronaf.</li><li>Mantenha as CAF em dia: cadastro vencido tira o associado — e o volume dele — do contrato.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Com a cooperativa constituída, a CAF Jurídica em nome da cooperativa é um dos primeiros registros a conferir.</div><button type="button" class="btn claro tm-ver" data-pag="Legalização, rótulos e selos">Ver no e-book: Legalização, rótulos e selos &#8594;</button></section>
+<section class="bloco tm-card" id="tm-pnae" data-busca="pnae programa nacional de alimentação escolar: a merenda das escolas públicas, que precisa comprar uma parte obrigatória da agricultura familiar. desde 2026, pelo menos 45% do repasse federal deve ir para compra direta da agricultura familiar (lei nº 15.226/2025; antes eram 30%). cada agricultor com caf pode vender até r$ 40 mil por ano para cada entidade executora; na organização, alguém controla esse limite por associado. a compra acontece por chamada pública, com projeto de venda — sem licitação. grupos de mulheres e jovens têm prioridade na seleção: isso precisa estar documentado. é o principal mercado institucional da abrinco. confira sempre as regras do edital vigente."><h2>PNAE</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Programa Nacional de Alimentação Escolar: a merenda das escolas públicas, que precisa comprar uma parte obrigatória da agricultura familiar.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Desde 2026, pelo menos 45% do repasse federal deve ir para compra direta da agricultura familiar (Lei nº 15.226/2025; antes eram 30%).</li><li>Cada agricultor com CAF pode vender até R$ 40 mil por ano para cada entidade executora; na organização, alguém controla esse limite por associado.</li><li>A compra acontece por chamada pública, com projeto de venda — sem licitação.</li><li>Grupos de mulheres e jovens têm prioridade na seleção: isso precisa estar documentado.</li></ol><div class="caixa dica"><b>Na Abrinco</b>É o principal mercado institucional da Abrinco. Confira sempre as regras do edital vigente.</div><button type="button" class="btn claro tm-ver" data-pag="PNAE: o mercado">Ver no e-book: PNAE: o mercado &#8594;</button></section>
+<section class="bloco tm-card" id="tm-chamada" data-busca="chamada pública e entidade executora chamada pública é o edital pelo qual o poder público compra da agricultura familiar sem licitação; a entidade executora (eex) é quem compra — prefeitura, estado ou instituição federal. acompanhe os editais das eex da região: prefeituras e secretaria estadual de educação. monte o projeto de venda com produtos, quantidades, preços e lista de agricultores com caf. após a seleção, assine o contrato e entregue no cronograma, com nota fiscal. planeje o caixa: o pagamento vem depois da entrega, e esse intervalo precisa ser financiado. regularidade de entrega e documentação em dia contam mais que preço na renovação do contrato."><h2>Chamada pública e Entidade Executora</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Chamada pública é o edital pelo qual o poder público compra da agricultura familiar sem licitação; a Entidade Executora (EEx) é quem compra — prefeitura, estado ou instituição federal.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Acompanhe os editais das EEx da região: prefeituras e secretaria estadual de educação.</li><li>Monte o projeto de venda com produtos, quantidades, preços e lista de agricultores com CAF.</li><li>Após a seleção, assine o contrato e entregue no cronograma, com nota fiscal.</li><li>Planeje o caixa: o pagamento vem depois da entrega, e esse intervalo precisa ser financiado.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Regularidade de entrega e documentação em dia contam mais que preço na renovação do contrato.</div><button type="button" class="btn claro tm-ver" data-pag="Operando bem um contrato público">Ver no e-book: Operando bem um contrato público &#8594;</button></section>
+<section class="bloco tm-card" id="tm-paa" data-busca="paa programa de aquisição de alimentos: compra pública da agricultura familiar para abastecer a rede de segurança alimentar. o governo compra o alimento e o destina a pessoas em insegurança alimentar ou a equipamentos públicos. a organização participa com caf jurídica, seguindo as modalidades e limites do programa. entregue conforme o cronograma e guarde os comprovantes de entrega. use o paa para dar escoamento regular à produção, sem depender só do mercado privado. complementa o pnae: juntos, dão previsibilidade de volume ao ano."><h2>PAA</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Programa de Aquisição de Alimentos: compra pública da agricultura familiar para abastecer a rede de segurança alimentar.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>O governo compra o alimento e o destina a pessoas em insegurança alimentar ou a equipamentos públicos.</li><li>A organização participa com CAF Jurídica, seguindo as modalidades e limites do programa.</li><li>Entregue conforme o cronograma e guarde os comprovantes de entrega.</li><li>Use o PAA para dar escoamento regular à produção, sem depender só do mercado privado.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Complementa o PNAE: juntos, dão previsibilidade de volume ao ano.</div><button type="button" class="btn claro tm-ver" data-pag="Segmentos de clientes">Ver no e-book: Segmentos de clientes &#8594;</button></section>
+<h3 class="tm-titulo-grupo" id="tg-3">Finanças e simulador</h3>
+<section class="bloco tm-card" id="tm-custos" data-busca="custo variável e custo fixo custo variável cresce com a produção (raiz, embalagem, lenha); custo fixo existe mesmo com a casa parada (contador, salários permanentes, manutenção). meça o rendimento: quantos quilos de raiz viram um quilo de produto (no exemplo do e-book, 4 kg de raiz para 1 kg de farinha). some os itens variáveis por quilo: raiz, mão de obra de produção, embalagem, energia, entrega. some separadamente os gastos mensais que não dependem do volume. refaça a conta a cada safra ou quando o preço da raiz ou da embalagem mudar. teste rápido: se a casa parar um mês, a despesa continua? se sim, é fixa."><h2>Custo variável e custo fixo</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Custo variável cresce com a produção (raiz, embalagem, lenha); custo fixo existe mesmo com a casa parada (contador, salários permanentes, manutenção).</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Meça o rendimento: quantos quilos de raiz viram um quilo de produto (no exemplo do e-book, 4 kg de raiz para 1 kg de farinha).</li><li>Some os itens variáveis por quilo: raiz, mão de obra de produção, embalagem, energia, entrega.</li><li>Some separadamente os gastos mensais que não dependem do volume.</li><li>Refaça a conta a cada safra ou quando o preço da raiz ou da embalagem mudar.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Teste rápido: se a casa parar um mês, a despesa continua? Se sim, é fixa.</div><button type="button" class="btn claro tm-ver" data-pag="Quanto custa o seu quilo">Ver no e-book: Quanto custa o seu quilo &#8594;</button></section>
+<section class="bloco tm-card" id="tm-margem" data-busca="margem de contribuição o que sobra de cada quilo vendido depois de pagar o custo variável — é esse valor que paga o custo fixo. pegue o preço de venda por quilo. subtraia o custo variável por quilo. o resultado é a margem: no exemplo do e-book, r$ 9,00 − r$ 5,70 = r$ 3,30 por quilo. se a margem for negativa, cada quilo vendido dá prejuízo — e vender mais só piora. regra do e-book: nunca vender abaixo do custo variável, nem para “não perder o cliente”."><h2>Margem de contribuição</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>O que sobra de cada quilo vendido depois de pagar o custo variável — é esse valor que paga o custo fixo.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Pegue o preço de venda por quilo.</li><li>Subtraia o custo variável por quilo.</li><li>O resultado é a margem: no exemplo do e-book, R$ 9,00 − R$ 5,70 = R$ 3,30 por quilo.</li><li>Se a margem for negativa, cada quilo vendido dá prejuízo — e vender mais só piora.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Regra do e-book: nunca vender abaixo do custo variável, nem para “não perder o cliente”.</div><button type="button" class="btn claro tm-ver" data-pag="Preço e ponto de equilíbrio">Ver no e-book: Preço e ponto de equilíbrio &#8594;</button></section>
+<section class="bloco tm-card" id="tm-equilibrio" data-busca="ponto de equilíbrio o volume mínimo de vendas por mês em que a receita cobre exatamente todos os custos. calcule a margem de contribuição por quilo. divida o custo fixo mensal pela margem. no exemplo do e-book: r$ 6.500 ÷ r$ 3,30 ≈ 1.970 kg por mês. acrescente o volume para formar fundo de reserva — a meta real fica perto de 2.400 kg. compare o ponto de equilíbrio com a capacidade da casa: se não cabe, o problema é estrutural, não comercial."><h2>Ponto de equilíbrio</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>O volume mínimo de vendas por mês em que a receita cobre exatamente todos os custos.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Calcule a margem de contribuição por quilo.</li><li>Divida o custo fixo mensal pela margem.</li><li>No exemplo do e-book: R$ 6.500 ÷ R$ 3,30 ≈ 1.970 kg por mês.</li><li>Acrescente o volume para formar fundo de reserva — a meta real fica perto de 2.400 kg.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Compare o ponto de equilíbrio com a capacidade da casa: se não cabe, o problema é estrutural, não comercial.</div><button type="button" class="btn claro tm-ver" data-pag="Preço e ponto de equilíbrio">Ver no e-book: Preço e ponto de equilíbrio &#8594;</button></section>
+<section class="bloco tm-card" id="tm-giro" data-busca="capital de giro o dinheiro necessário para bancar a operação entre pagar os custos e receber dos clientes. veja quantos dias passam entre comprar a raiz e receber pela venda. multiplique a receita média de um dia por esse prazo. esse valor precisa existir em caixa ou em crédito antes de assinar contratos com prazo longo. forme um fundo de giro com parte das sobras, para não depender de empréstimo caro. contrato lucrativo sem capital de giro também quebra — alerta do e-book para o mercado institucional."><h2>Capital de giro</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>O dinheiro necessário para bancar a operação entre pagar os custos e receber dos clientes.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Veja quantos dias passam entre comprar a raiz e receber pela venda.</li><li>Multiplique a receita média de um dia por esse prazo.</li><li>Esse valor precisa existir em caixa ou em crédito antes de assinar contratos com prazo longo.</li><li>Forme um fundo de giro com parte das sobras, para não depender de empréstimo caro.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Contrato lucrativo sem capital de giro também quebra — alerta do e-book para o mercado institucional.</div><button type="button" class="btn claro tm-ver" data-pag="Preço e ponto de equilíbrio">Ver no e-book: Preço e ponto de equilíbrio &#8594;</button></section>
+<section class="bloco tm-card" id="tm-tir" data-busca="tir, tma e vpl três medidas para decidir se um investimento vale a pena: tma é o retorno mínimo exigido; vpl é quanto o projeto vale hoje; tir é o retorno que ele entrega. defina a tma: o que o dinheiro renderia em outra aplicação, mais um prêmio pelo risco da atividade. projete o caixa mês a mês e traga cada valor para o presente, descontando pela tma; subtraia o investimento: isso é o vpl. vpl positivo significa que o projeto cria valor; negativo, que o dinheiro rende mais em outro lugar. a tir é a taxa que zera o vpl: se for maior que a tma, o projeto remunera o risco. o simulador calcula as três. use-as para decidir compras como a câmara fria do aipim palito."><h2>TIR, TMA e VPL</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Três medidas para decidir se um investimento vale a pena: TMA é o retorno mínimo exigido; VPL é quanto o projeto vale hoje; TIR é o retorno que ele entrega.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Defina a TMA: o que o dinheiro renderia em outra aplicação, mais um prêmio pelo risco da atividade.</li><li>Projete o caixa mês a mês e traga cada valor para o presente, descontando pela TMA; subtraia o investimento: isso é o VPL.</li><li>VPL positivo significa que o projeto cria valor; negativo, que o dinheiro rende mais em outro lugar.</li><li>A TIR é a taxa que zera o VPL: se for maior que a TMA, o projeto remunera o risco.</li></ol><div class="caixa dica"><b>Na Abrinco</b>O simulador calcula as três. Use-as para decidir compras como a câmara fria do aipim palito.</div><button type="button" class="btn claro tm-ver" data-pag="Como ler as saídas">Ver no e-book: Como ler as saídas &#8594;</button></section>
+<h3 class="tm-titulo-grupo" id="tg-4">Produção e meio ambiente</h3>
+<section class="bloco tm-card" id="tm-mesa" data-busca="mandioca de mesa e mandioca brava mandioca de mesa (aipim, macaxeira) tem baixo teor de compostos cianogênicos e é consumida cozida; a brava tem teor alto e só serve para processamento industrial. a diferença está nos compostos que liberam ácido cianídrico, tóxicos em excesso. variedades de mesa têm ciclo mais curto, cozinham bem e resistem à deterioração pós-colheita. variedades bravas têm mais amido e são usadas na indústria de fécula e em farinheiras de grande escala. cultivar e ciclo de cada lote precisam ser registrados na entrada da raiz. a abrinco trabalha exclusivamente com mandioca de mesa: não processa brava, não produz fécula industrial e não compra nem importa fécula."><h2>Mandioca de mesa e mandioca brava</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Mandioca de mesa (aipim, macaxeira) tem baixo teor de compostos cianogênicos e é consumida cozida; a brava tem teor alto e só serve para processamento industrial.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>A diferença está nos compostos que liberam ácido cianídrico, tóxicos em excesso.</li><li>Variedades de mesa têm ciclo mais curto, cozinham bem e resistem à deterioração pós-colheita.</li><li>Variedades bravas têm mais amido e são usadas na indústria de fécula e em farinheiras de grande escala.</li><li>Cultivar e ciclo de cada lote precisam ser registrados na entrada da raiz.</li></ol><div class="caixa dica"><b>Na Abrinco</b>A Abrinco trabalha exclusivamente com mandioca de mesa: não processa brava, não produz fécula industrial e não compra nem importa fécula.</div><button type="button" class="btn claro tm-ver" data-pag="Padrões técnicos">Ver no e-book: Padrões técnicos &#8594;</button></section>
+<section class="bloco tm-card" id="tm-goma" data-busca="goma, polvilho e fécula todos são o amido da mandioca. o que muda é a origem, o processo e o nome comercial. rala-se a raiz e lava-se a massa em água: o amido se solta e decanta no fundo do tanque. decantado, escoado e seco, esse amido é a goma — base da tapioca e do beiju — ou o polvilho doce. fermentado por 15 a 40 dias antes de secar, vira polvilho azedo. “fécula”, no mercado, costuma designar o amido industrial, extraído em escala a partir de mandioca brava. a goma da abrinco é extraída da própria mandioca de mesa, na unidade — não é fécula industrial comprada de terceiros."><h2>Goma, polvilho e fécula</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Todos são o amido da mandioca. O que muda é a origem, o processo e o nome comercial.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Rala-se a raiz e lava-se a massa em água: o amido se solta e decanta no fundo do tanque.</li><li>Decantado, escoado e seco, esse amido é a goma — base da tapioca e do beiju — ou o polvilho doce.</li><li>Fermentado por 15 a 40 dias antes de secar, vira polvilho azedo.</li><li>“Fécula”, no mercado, costuma designar o amido industrial, extraído em escala a partir de mandioca brava.</li></ol><div class="caixa dica"><b>Na Abrinco</b>A goma da Abrinco é extraída da própria mandioca de mesa, na unidade — não é fécula industrial comprada de terceiros.</div><button type="button" class="btn claro tm-ver" data-pag="Polvilho, goma e beiju">Ver no e-book: Polvilho, goma e beiju &#8594;</button></section>
+<section class="bloco tm-card" id="tm-manipueira" data-busca="manipueira o líquido que escorre da massa de mandioca na prensagem — altamente poluente sem tratamento, útil como biofertilizante depois dele. colete em canaleta impermeabilizada, sem deixar escorrer no terreno. armazene em tanque com tampa ou tela, dimensionado para um dia de processamento. trate por fermentação ou digestão anaeróbia pelo período indicado pela assistência técnica. só então aplique no solo, com critério — estudos registram ganho em raiz, amido e fertilidade. lançar manipueira em rio ou no chão é infração ambiental e desperdício de um insumo."><h2>Manipueira</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>O líquido que escorre da massa de mandioca na prensagem — altamente poluente sem tratamento, útil como biofertilizante depois dele.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Colete em canaleta impermeabilizada, sem deixar escorrer no terreno.</li><li>Armazene em tanque com tampa ou tela, dimensionado para um dia de processamento.</li><li>Trate por fermentação ou digestão anaeróbia pelo período indicado pela assistência técnica.</li><li>Só então aplique no solo, com critério — estudos registram ganho em raiz, amido e fertilidade.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Lançar manipueira em rio ou no chão é infração ambiental e desperdício de um insumo.</div><button type="button" class="btn claro tm-ver" data-pag="Manipueira: passivo ou ativo">Ver no e-book: Manipueira: passivo ou ativo &#8594;</button></section>
+<section class="bloco tm-card" id="tm-integral" data-busca="aproveitamento integral e crueira transformar em produto ou insumo tudo o que a raiz gera, inclusive o que hoje vira resíduo — como a crueira, parte sólida retida na peneira. liste os resíduos: cascas, crueira, manipueira, rama. para cada um, identifique um uso: ração animal, adubo, biofertilizante, novo produto. avalie custo e demanda de cada uso antes de investir. registre o destino de cada resíduo — é exigência ambiental e argumento de venda. o e-book aponta os resíduos como receita que hoje escapa da abrinco."><h2>Aproveitamento integral e crueira</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Transformar em produto ou insumo tudo o que a raiz gera, inclusive o que hoje vira resíduo — como a crueira, parte sólida retida na peneira.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Liste os resíduos: cascas, crueira, manipueira, rama.</li><li>Para cada um, identifique um uso: ração animal, adubo, biofertilizante, novo produto.</li><li>Avalie custo e demanda de cada uso antes de investir.</li><li>Registre o destino de cada resíduo — é exigência ambiental e argumento de venda.</li></ol><div class="caixa dica"><b>Na Abrinco</b>O e-book aponta os resíduos como receita que hoje escapa da Abrinco.</div><button type="button" class="btn claro tm-ver" data-pag="Aproveitamento integral">Ver no e-book: Aproveitamento integral &#8594;</button></section>
+<section class="bloco tm-card" id="tm-minproc" data-busca="minimamente processado alimento fresco lavado, descascado, cortado e embalado — geralmente a vácuo — que mantém características do produto in natura e vai direto para o preparo. recebe e seleciona o produto fresco. lava, sanitiza, descasca e corta em ambiente higienizado. embala a vácuo, retirando o ar para retardar a deterioração. mantém sob refrigeração até a entrega, respeitando o prazo de validade. aipim, abóbora, inhame e jaca a vácuo: a linha que levou a abrinco a diversificar além dos derivados de mandioca."><h2>Minimamente processado</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Alimento fresco lavado, descascado, cortado e embalado — geralmente a vácuo — que mantém características do produto in natura e vai direto para o preparo.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Recebe e seleciona o produto fresco.</li><li>Lava, sanitiza, descasca e corta em ambiente higienizado.</li><li>Embala a vácuo, retirando o ar para retardar a deterioração.</li><li>Mantém sob refrigeração até a entrega, respeitando o prazo de validade.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Aipim, abóbora, inhame e jaca a vácuo: a linha que levou a Abrinco a diversificar além dos derivados de mandioca.</div><button type="button" class="btn claro tm-ver" data-pag="A Abrinco hoje">Ver no e-book: A Abrinco hoje &#8594;</button></section>
+<section class="bloco tm-card" id="tm-trl" data-busca="trl (nível de maturidade tecnológica) uma escala de 1 a 9 que mede o quanto uma tecnologia está pronta para uso real, da ideia no papel até a operação comercial. trl 1 a 3: pesquisa básica e prova de conceito em laboratório. trl 4 a 6: protótipo testado em condições cada vez mais próximas da realidade. trl 7: protótipo demonstrado no ambiente real de operação. trl 8 e 9: sistema qualificado e em operação comercial. o processo de aipim palito pré-cozido congelado da variedade eucalipto está previsto em trl 7 — validado na própria agroindústria."><h2>TRL (nível de maturidade tecnológica)</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Uma escala de 1 a 9 que mede o quanto uma tecnologia está pronta para uso real, da ideia no papel até a operação comercial.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>TRL 1 a 3: pesquisa básica e prova de conceito em laboratório.</li><li>TRL 4 a 6: protótipo testado em condições cada vez mais próximas da realidade.</li><li>TRL 7: protótipo demonstrado no ambiente real de operação.</li><li>TRL 8 e 9: sistema qualificado e em operação comercial.</li></ol><div class="caixa dica"><b>Na Abrinco</b>O processo de aipim palito pré-cozido congelado da variedade Eucalipto está previsto em TRL 7 — validado na própria agroindústria.</div><button type="button" class="btn claro tm-ver" data-pag="A variedade Eucalipto">Ver no e-book: A variedade Eucalipto &#8594;</button></section>
+<h3 class="tm-titulo-grupo" id="tg-5">Associação e cooperativa</h3>
+<section class="bloco tm-card" id="tm-duas" data-busca="associação e cooperativa as duas são organizações de pessoas, sem fins lucrativos, com voto igual. a associação representa; a cooperativa faz negócio em nome do cooperado. a associação segue o código civil e existe para representar, prestar serviços, fazer projetos e convênios. a cooperativa segue a lei nº 5.764/1971 e existe para comprar, processar, vender e devolver o resultado ao cooperado. podem conviver: duas pessoas jurídicas, com papéis separados e contratos entre elas. o cuidado é não deixar contrato no vazio durante a transição. desde 22 de maio de 2026, a abrinco é as duas: a associação (desde 2001) e a cooperativa, com cnpj próprio."><h2>Associação e cooperativa</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>As duas são organizações de pessoas, sem fins lucrativos, com voto igual. A associação representa; a cooperativa faz negócio em nome do cooperado.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>A associação segue o Código Civil e existe para representar, prestar serviços, fazer projetos e convênios.</li><li>A cooperativa segue a Lei nº 5.764/1971 e existe para comprar, processar, vender e devolver o resultado ao cooperado.</li><li>Podem conviver: duas pessoas jurídicas, com papéis separados e contratos entre elas.</li><li>O cuidado é não deixar contrato no vazio durante a transição.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Desde 22 de maio de 2026, a Abrinco é as duas: a associação (desde 2001) e a cooperativa, com CNPJ próprio.</div><button type="button" class="btn claro tm-ver" data-pag="A Abrinco hoje">Ver no e-book: A Abrinco hoje &#8594;</button></section>
+<section class="bloco tm-card" id="tm-ato" data-busca="ato cooperativo e ato não cooperativo ato cooperativo é a operação entre a cooperativa e seus cooperados; ato não cooperativo é qualquer operação com terceiros. quando o cooperado entrega raiz para a cooperativa vender, é ato cooperativo — fora da incidência de irpj e csll. vender para quem não é cooperado, comprar raiz de terceiros ou ter receitas financeiras é ato não cooperativo — tributado normalmente. a contabilidade precisa separar os dois desde o primeiro mês. por isso o e-book recomenda contador com experiência comprovada em cooperativas. comprar raiz de não cooperados para completar lote é permitido, mas entra como ato não cooperativo."><h2>Ato cooperativo e ato não cooperativo</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Ato cooperativo é a operação entre a cooperativa e seus cooperados; ato não cooperativo é qualquer operação com terceiros.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Quando o cooperado entrega raiz para a cooperativa vender, é ato cooperativo — fora da incidência de IRPJ e CSLL.</li><li>Vender para quem não é cooperado, comprar raiz de terceiros ou ter receitas financeiras é ato não cooperativo — tributado normalmente.</li><li>A contabilidade precisa separar os dois desde o primeiro mês.</li><li>Por isso o e-book recomenda contador com experiência comprovada em cooperativas.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Comprar raiz de não cooperados para completar lote é permitido, mas entra como ato não cooperativo.</div><button type="button" class="btn claro tm-ver" data-pag="Sobras, fundos, tributos">Ver no e-book: Sobras, fundos, tributos &#8594;</button></section>
+<section class="bloco tm-card" id="tm-sobras" data-busca="sobras, fundo de reserva e fates sobra é o resultado positivo da cooperativa no ano. antes de distribuí-la, a lei exige dois fundos indivisíveis. apure o resultado do exercício. separe no mínimo 10% para o fundo de reserva, o colchão contra perdas. separe no mínimo 5% para o fates — fundo de assistência técnica, educacional e social. rateie o restante na proporção do que cada cooperado operou com a cooperativa — não do capital que integralizou. prejuízo segue a mesma lógica: é rateado, não desaparece."><h2>Sobras, Fundo de Reserva e FATES</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Sobra é o resultado positivo da cooperativa no ano. Antes de distribuí-la, a lei exige dois fundos indivisíveis.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Apure o resultado do exercício.</li><li>Separe no mínimo 10% para o Fundo de Reserva, o colchão contra perdas.</li><li>Separe no mínimo 5% para o FATES — Fundo de Assistência Técnica, Educacional e Social.</li><li>Rateie o restante na proporção do que cada cooperado operou com a cooperativa — não do capital que integralizou.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Prejuízo segue a mesma lógica: é rateado, não desaparece.</div><button type="button" class="btn claro tm-ver" data-pag="Sobras, fundos, tributos">Ver no e-book: Sobras, fundos, tributos &#8594;</button></section>
+<section class="bloco tm-card" id="tm-capital" data-busca="capital social e integralização capital social é a soma das quotas-partes dos cooperados; integralizar é pagar efetivamente a quota subscrita. na constituição, cada cooperado subscreve quotas-partes: assume o compromisso de aportar um valor. integraliza à vista ou em parcelas, conforme o estatuto. o capital dá lastro à cooperativa, mas não compra votos: cada pessoa tem um voto. ao sair, o cooperado recebe de volta suas quotas nas condições do estatuto. a integralização inicial está entre os passos do trimestre de constituição na rota de transição do e-book."><h2>Capital social e integralização</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Capital social é a soma das quotas-partes dos cooperados; integralizar é pagar efetivamente a quota subscrita.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Na constituição, cada cooperado subscreve quotas-partes: assume o compromisso de aportar um valor.</li><li>Integraliza à vista ou em parcelas, conforme o estatuto.</li><li>O capital dá lastro à cooperativa, mas não compra votos: cada pessoa tem um voto.</li><li>Ao sair, o cooperado recebe de volta suas quotas nas condições do estatuto.</li></ol><div class="caixa dica"><b>Na Abrinco</b>A integralização inicial está entre os passos do trimestre de constituição na rota de transição do e-book.</div><button type="button" class="btn claro tm-ver" data-pag="Associação ou cooperativa">Ver no e-book: Associação ou cooperativa &#8594;</button></section>
+<section class="bloco tm-card" id="tm-ocb" data-busca="ocb / sescoop a ocb representa o cooperativismo; o sescoop é seu serviço de aprendizagem, que oferece formação, consultoria e programas de gestão. após o registro na junta comercial, a cooperativa se registra na ocb estadual (ocb/sescoop-ba). o registro dá acesso a cursos, assessoria e representação institucional. a contribuição ao sescoop incide sobre a folha de pagamento. a rede abre portas para centrais de comercialização e rodadas de negócio. um dos registros listados para conferência no primeiro ano da cooperativa."><h2>OCB / Sescoop</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>A OCB representa o cooperativismo; o Sescoop é seu serviço de aprendizagem, que oferece formação, consultoria e programas de gestão.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>Após o registro na Junta Comercial, a cooperativa se registra na OCB estadual (OCB/Sescoop-BA).</li><li>O registro dá acesso a cursos, assessoria e representação institucional.</li><li>A contribuição ao Sescoop incide sobre a folha de pagamento.</li><li>A rede abre portas para centrais de comercialização e rodadas de negócio.</li></ol><div class="caixa dica"><b>Na Abrinco</b>Um dos registros listados para conferência no primeiro ano da cooperativa.</div><button type="button" class="btn claro tm-ver" data-pag="O caminho jurídico">Ver no e-book: O caminho jurídico &#8594;</button></section>
+<section class="bloco tm-card" id="tm-simples" data-busca="simples nacional e cooperativas regime tributário simplificado para pequenas empresas — vedado às cooperativas, exceto as de consumo. a cooperativa não pode optar pelo simples nacional. paga pis e cofins sobre a receita, com as exclusões próprias das cooperativas. o icms segue a regra estadual — consulte a sefaz-ba sobre farinha e derivados. simule a carga tributária com o contador; é a principal desvantagem da forma cooperativa. no simulador, selecione o enquadramento de cooperativa e compare a alíquota efetiva."><h2>Simples Nacional e cooperativas</h2><p class="tm-frase"><span class="tm-rot">Em uma frase</span>Regime tributário simplificado para pequenas empresas — vedado às cooperativas, exceto as de consumo.</p><p class="tm-rot" style="margin:14px 0 6px">Passo a passo</p><ol class="passos"><li>A cooperativa não pode optar pelo Simples Nacional.</li><li>Paga PIS e Cofins sobre a receita, com as exclusões próprias das cooperativas.</li><li>O ICMS segue a regra estadual — consulte a Sefaz-BA sobre farinha e derivados.</li><li>Simule a carga tributária com o contador; é a principal desvantagem da forma cooperativa.</li></ol><div class="caixa dica"><b>Na Abrinco</b>No simulador, selecione o enquadramento de cooperativa e compare a alíquota efetiva.</div><button type="button" class="btn claro tm-ver" data-pag="Sobras, fundos, tributos">Ver no e-book: Sobras, fundos, tributos &#8594;</button></section>
+    <p class="nota" id="tm-vazio" style="display:none">Nenhum termo encontrado para essa busca.</p>
+  </div>
+</div>
+</div>
+
 <div id="aba-ebook" class="aba-oculta">
   <div class="ebook-topo">
     <div>
-      <p class="ebook-rot">Publicação incorporada</p>
-      <h2 class="ebook-titulo">Da Roça ao Mercado — Modelo de Negócios da Associação Abrinco</h2>
+      <p class="ebook-rot">Apresentação interativa · edição revista 2026</p>
+      <h2 class="ebook-titulo">Da Roça ao Mercado — Modelo de Negócios da Abrinco</h2>
     </div>
     <div class="ebook-acoes">
       <button class="btn claro" id="btn-eb-abrir" type="button">Abrir em nova aba</button>
@@ -936,8 +1069,9 @@ footer ul{margin:0;padding-left:18px} footer li{margin-bottom:4px}
   </div>
   <p class="nota" id="eb-status" style="max-width:1400px;margin:0 auto 10px;padding:0 22px">
     Carregando a publicação…</p>
-  <div class="ebook-quadro"><iframe id="eb-frame" title="e-Book Abrinco"
-      sandbox="allow-same-origin allow-popups allow-modals"></iframe></div>
+  <div class="ebook-quadro"><iframe id="eb-frame" title="e-Book Abrinco — apresentação interativa"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-modals allow-downloads"
+      allow="fullscreen" allowfullscreen></iframe></div>
 </div>
 </main>
 
@@ -2230,8 +2364,26 @@ function rolarPara(el){
 }
 const ABAS=[['simulador','aba-simulador','aba-btn-sim'],
             ['manual','aba-manual','aba-btn-man'],
-            ['ebook','aba-ebook','aba-btn-eb']];
-let ebookCarregado=false;
+            ['ebook','aba-ebook','aba-btn-eb'],
+            ['termos','aba-termos','aba-btn-termos']];
+let ebookCarregado=false, ebookPronto=false, ebookPendente=null;
+function irNoEbook(titulo){
+  try{
+    const w=$('eb-frame').contentWindow;
+    if(w&&typeof w.pvIrTitulo==='function'){w.pvIrTitulo(titulo);return true}
+    w.postMessage({tipo:'pv-ir-titulo',titulo:titulo},'*'); return true;
+  }catch(e){return false}
+}
+function verNoEbook(titulo){
+  trocarAba('ebook');
+  if(ebookPronto)irNoEbook(titulo); else ebookPendente=titulo;
+}
+window.addEventListener('message',function(e){
+  const d=e.data||{};
+  if(d.tipo==='pv-pagina'&&$('eb-status'))
+    $('eb-status').textContent='Página '+d.n+' de '+d.total+' — '+d.titulo+
+      '  ·  setas ← → folheiam, + e − ajustam o zoom, F abre em tela cheia.';
+});
 function fonteEbook(){
   const f=$('ebook-fonte');
   if(!f||!f.textContent.trim())return '';
@@ -2248,17 +2400,32 @@ function carregarEbook(){
   ebookCarregado=true;
   quadro.srcdoc=html;
   quadro.addEventListener('load',function(){
+    ebookPronto=true; ajustarQuadro();
+    if(ebookPendente){const t=ebookPendente; ebookPendente=null; setTimeout(function(){irNoEbook(t)},60);}
     $('eb-status').textContent='Publicação da Associação Abrinco — Vale do Copioba, Maragogipe (BA). '+
       'Use a rolagem dentro do quadro ou abra em nova aba para leitura em tela cheia.';
   },{once:true});
 }
+function ajustarQuadro(){
+  const f=$('eb-frame'), aba=$('aba-ebook'); if(!f||!f.offsetParent)return;
+  // altura = janela menos o que fica acima do quadro dentro da própria aba
+  const acima=f.getBoundingClientRect().top-aba.getBoundingClientRect().top;
+  f.style.height=Math.max(440,Math.round(window.innerHeight-acima-14))+'px';
+}
+window.addEventListener('resize',function(){ajustarQuadro()});
 function trocarAba(qual,alvo){
   ABAS.forEach(a=>{
     const ativa=a[0]===qual;
     $(a[1]).classList.toggle('aba-oculta',!ativa);
     $(a[2]).setAttribute('aria-selected',ativa?'true':'false');
   });
-  if(qual==='ebook')carregarEbook();
+  if(qual==='ebook'){
+    carregarEbook(); ajustarQuadro();
+    requestAnimationFrame(function(){
+      try{window.scrollTo({top:$('aba-ebook').getBoundingClientRect().top+window.scrollY,behavior:'auto'})}catch(e){}
+    });
+    return;
+  }
   const s=(qual==='manual'&&alvo)?$(alvo):null;
   if(s){
     marcarIndice(alvo);
@@ -2309,6 +2476,38 @@ function montarManual(){
 $('aba-btn-sim').addEventListener('click',function(){trocarAba('simulador')});
 $('aba-btn-man').addEventListener('click',function(){trocarAba('manual')});
 $('aba-btn-eb').addEventListener('click',function(){trocarAba('ebook')});
+$('aba-btn-termos').addEventListener('click',function(){trocarAba('termos')});
+document.querySelectorAll('.tm-ver').forEach(function(b){
+  b.addEventListener('click',function(){verNoEbook(this.dataset.pag)});
+});
+document.querySelectorAll('.tm-indice a[data-tm]').forEach(function(a){
+  a.addEventListener('click',function(ev){
+    ev.preventDefault();
+    const s=$('tm-'+this.dataset.tm); if(!s)return;
+    document.querySelectorAll('.tm-indice a').forEach(x=>x.classList.toggle('ativo',x===this));
+    s.classList.remove('piscar'); void s.offsetWidth; s.classList.add('piscar');
+    rolarPara(s);
+  });
+});
+function filtrarTermos(){
+  const q=($('tm-busca').value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  let vis=0;
+  document.querySelectorAll('.tm-card').forEach(function(c){
+    const alvo=c.dataset.busca.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const ok=!q||alvo.indexOf(q)>=0; c.classList.toggle('oculto',!ok); if(ok)vis++;
+    const link=document.querySelector('.tm-indice a[data-tm="'+c.id.slice(3)+'"]');
+    if(link)link.parentElement.style.display=ok?'':'none';
+  });
+  document.querySelectorAll('.tm-titulo-grupo').forEach(function(h){
+    let n=h.nextElementSibling, algum=false;
+    while(n&&!n.classList.contains('tm-titulo-grupo')){if(n.classList.contains('tm-card')&&!n.classList.contains('oculto'))algum=true; n=n.nextElementSibling}
+    h.classList.toggle('oculto',!algum);
+  });
+  $('tm-contagem').textContent=vis+' de '+document.querySelectorAll('.tm-card').length+' termos';
+  $('tm-vazio').style.display=vis?'none':'block';
+}
+$('tm-busca').addEventListener('input',filtrarTermos);
+filtrarTermos();
 $('btn-eb-abrir').addEventListener('click',function(){
   const html=fonteEbook();
   if(!html){$('eb-status').textContent='Publicação não embutida.';return}
@@ -2337,7 +2536,7 @@ render();
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Da Roça ao Mercado — Modelo de Negócios da Associação Abrinco</title>
+<title>Da Roça ao Mercado — Modelo de Negócios da Abrinco (Associação e Cooperativa)</title>
 <style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2428,6 +2627,80 @@ svg{ display:block; }
 .tight{ margin:8px 0; }
 .center{ text-align:center; }
 </style>
+<style id="pv-estilo">
+html,body{margin:0;padding:0;background:#1C221E;overflow:hidden;height:100%}
+#pv-palco{position:fixed;inset:0 0 58px 0;overflow:auto;scroll-behavior:auto;
+  scrollbar-color:#6F8A76 #1C221E;scrollbar-width:auto;outline:none}
+#pv-palco::-webkit-scrollbar{width:14px;height:14px}
+#pv-palco::-webkit-scrollbar-thumb{background:#6F8A76;border-radius:8px;border:3px solid #1C221E}
+#pv-palco::-webkit-scrollbar-track{background:#1C221E}
+#pv-trilho{display:flex;flex-direction:column;align-items:center;min-width:100%;min-height:100%;
+  box-sizing:border-box;padding:26px 0}
+.pv-slot{position:relative;flex:0 0 auto;margin:0 auto;box-shadow:0 6px 28px rgba(0,0,0,.45);
+  border-radius:2px;overflow:hidden;background:#fff}
+.pv-slot>.page{position:absolute!important;top:0;left:0;transform-origin:0 0;margin:0!important}
+#pv-trilho.unica{justify-content:center}
+#pv-trilho.unica .pv-slot{display:none}
+#pv-trilho.unica .pv-slot.atual{display:block}
+#pv-trilho.continua .pv-slot{margin-bottom:22px}
+@keyframes pv-entra-d{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes pv-entra-e{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+.pv-slot.entra-d{animation:pv-entra-d .28s ease-out}
+.pv-slot.entra-e{animation:pv-entra-e .28s ease-out}
+@media (prefers-reduced-motion:reduce){.pv-slot.entra-d,.pv-slot.entra-e{animation:none}}
+
+.pv-seta{position:fixed;top:calc(50% - 29px);transform:translateY(-50%);z-index:20;width:52px;height:88px;
+  border:0;border-radius:12px;background:rgba(16,43,29,.62);color:#F6DFA4;font-size:38px;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,opacity .15s;
+  font-family:Georgia,serif;padding:0 0 4px}
+.pv-seta:hover{background:rgba(29,86,56,.92)}
+.pv-seta:disabled{opacity:.18;cursor:default}
+.pv-seta.esq{left:14px}.pv-seta.dir{right:26px}
+
+#pv-barra{position:fixed;left:0;right:0;bottom:0;height:58px;z-index:30;background:#102B1D;
+  border-top:3px solid #E9B23C;display:flex;align-items:center;gap:8px;padding:0 12px;box-sizing:border-box;
+  font-family:"Segoe UI",Arial,sans-serif;color:#EAF1EB;font-size:13px}
+#pv-barra button,#pv-barra select{font:inherit;font-size:13px;background:#1D3B2A;color:#EAF1EB;
+  border:1px solid #33573F;border-radius:8px;height:36px;padding:0 11px;cursor:pointer;white-space:nowrap}
+#pv-barra button:hover{background:#27513A}
+#pv-barra button.ativo{background:#E9B23C;color:#102B1D;border-color:#E9B23C;font-weight:700}
+#pv-barra button:disabled{opacity:.35;cursor:default}
+#pv-barra select{max-width:250px;min-width:0}
+#pv-barra .grupo{display:flex;align-items:center;gap:6px}
+#pv-barra .sep{width:1px;height:28px;background:#33573F;margin:0 2px}
+#pv-faixa{flex:1 1 auto;min-width:70px;accent-color:#E9B23C;cursor:pointer;height:28px}
+#pv-cont{font-family:Consolas,"IBM Plex Mono",monospace;font-size:13px;min-width:74px;text-align:center}
+#pv-zoomv{font-family:Consolas,"IBM Plex Mono",monospace;min-width:48px;text-align:center}
+#pv-dica{position:fixed;left:50%;bottom:74px;transform:translateX(-50%);z-index:25;background:rgba(16,43,29,.9);
+  color:#EAF1EB;font:13px "Segoe UI",Arial,sans-serif;padding:9px 16px;border-radius:10px;
+  transition:opacity .6s;pointer-events:none;white-space:nowrap}
+#pv-dica.some{opacity:0}
+@media (max-width:900px){
+  #pv-barra .opcional{display:none}
+  #pv-barra select{max-width:130px}
+  .pv-seta{width:40px;height:66px;font-size:30px}.pv-seta.esq{left:6px}.pv-seta.dir{right:18px}
+}
+@media (max-width:560px){#pv-barra .opcional2{display:none}}
+@media (max-width:700px){
+  #pv-dica{white-space:normal;max-width:88vw;text-align:center;font-size:12px}
+  #pv-barra{overflow-x:auto;gap:6px;padding:0 8px}
+  #pv-barra button,#pv-barra select{height:34px;padding:0 9px}
+  #pv-faixa{min-width:90px}
+  .pv-seta{background:rgba(16,43,29,.45);width:34px;height:58px;font-size:26px}
+  .pv-seta.esq{left:2px}.pv-seta.dir{right:2px}
+  #pv-trilho{padding:12px 0}
+}
+
+@media print{
+  html,body{background:#fff;overflow:visible;height:auto}
+  #pv-barra,.pv-seta,#pv-dica{display:none!important}
+  #pv-palco{position:static;overflow:visible}
+  #pv-trilho{display:block;padding:0}
+  #pv-trilho .pv-slot{display:block!important;width:auto!important;height:auto!important;box-shadow:none;
+    margin:0!important;overflow:visible;animation:none}
+  .pv-slot>.page{position:relative!important;transform:none!important}
+}
+</style>
 </head>
 <body>
 
@@ -2472,7 +2745,7 @@ svg{ display:block; }
     <div style="width:78px; height:5px; background:var(--ocre); border-radius:3px; margin:16px 0 14px;"></div>
 
     <div style="font-family:'Poppins',sans-serif; font-size:13pt; font-weight:600; line-height:1.35; color:var(--verde);">
-      Associa&#231;&#227;o Comunit&#225;ria do Brinco &#8212; Abrinco
+      Abrinco &#8212; Associa&#231;&#227;o Comunit&#225;ria do Brinco<br>e Cooperativa da Agricultura Familiar
     </div>
     <div style="font-family:'Poppins',sans-serif; font-size:10.6pt; font-weight:400; margin-top:5px; color:var(--cinza);">
       Maragogipe &#183; Vale do Copioba &#183; Rec&#244;ncavo Baiano
@@ -2489,7 +2762,7 @@ svg{ display:block; }
   <div style="position:absolute; top:24mm; right:17mm;">
     <div style="background:var(--verde); color:#fff; font-family:'Poppins',sans-serif;
       font-size:8pt; font-weight:700; letter-spacing:1.8px; padding:5px 12px; border-radius:20px;">
-      EDI&#199;&#195;O 2026
+      EDI&#199;&#195;O 2026 &#183; REVISTA
     </div>
   </div>
 
@@ -2536,7 +2809,7 @@ svg{ display:block; }
   <p><b>Objeto:</b> e-book gerencial que desdobra o Modelo de Negócios Canvas da Associação Abrinco (Maragogipe, Bahia),
   comenta cada bloco sob a ótica da gestão e o confronta com as melhores práticas observadas em associações e
   cooperativas de produtores de mandioca no Brasil.</p>
-  <p><b>Público:</b> diretoria e conselho fiscal da associação, associados, agentes de ATER, técnicos de cooperativas,
+  <p><b>Público:</b> diretorias e conselhos fiscais da associação e da cooperativa, associados, agentes de ATER, técnicos de cooperativas,
   parceiros institucionais, financiadores e compradores.</p>
 
   <div class="box green">
@@ -2560,7 +2833,7 @@ svg{ display:block; }
     <tr><td><b>2. O Modelo</b></td><td>Os nove blocos do Canvas ilustrados, com leitura gerencial e recomendações por bloco.</td></tr>
     <tr><td><b>3. Práticas</b></td><td>Benchmarking, governança, qualidade, mercados institucionais, custos, preço e sustentabilidade.</td></tr>
     <tr><td><b>4. Ação</b></td><td>SWOT, roteiro 2026–2028, indicadores, riscos, checklists e ferramentas de gestão.</td></tr>
-    <tr><td><b>5. Cooperativa</b></td><td>Oportunidades e desafios da transformação da associação em cooperativa, caminho jurídico, tributos, teste de prontidão e rota de transição.</td></tr>
+    <tr><td><b>5. Cooperativa</b></td><td>A cooperativa constituída em maio de 2026: o que muda, oportunidades e desafios, caminho jurídico adotado, tributos e consolidação.</td></tr>
   </table>
 
   <div style="margin-top:12px; border-top:2px solid var(--ocre); padding-top:8px; font-family:'Poppins',sans-serif; font-size:8.4pt; color:var(--cinza);">
@@ -2579,7 +2852,7 @@ svg{ display:block; }
       <div style="margin-bottom:4px;">1. A mandioca no Brasil e na Bahia</div>
       <div style="margin-bottom:4px;">2. A cadeia produtiva da mandioca</div>
       <div style="margin-bottom:4px;">3. Vale do Copioba: um ativo de origem</div>
-      <div style="margin-bottom:4px;">4. Quem é a Associação Abrinco · perfil, números e portfólio</div>
+      <div style="margin-bottom:4px;">4. Quem é a Abrinco · associação, cooperativa e portfólio</div>
       <div style="margin-bottom:14px;">5. Missão, visão, valores e posicionamento</div>
       <div style="font-family:'Poppins',sans-serif;font-weight:700;color:var(--terra);border-bottom:2px solid #EBC7B8;padding-bottom:3px;margin:0 0 6px;">PARTE 2 · O MODELO DE NEGÓCIOS</div>
       <div style="margin-bottom:4px;">6. O Canvas da Abrinco em uma página</div>
@@ -2622,7 +2895,7 @@ svg{ display:block; }
       <div style="margin-bottom:4px;">39. Simulador gerencial da associação</div>
       <div style="margin-bottom:4px;">40. Planejamento do negócio: curso e-Campo</div>
       <div style="margin-bottom:14px;">41. IA generativa na associação</div>
-      <div style="font-family:'Poppins',sans-serif;font-weight:700;color:var(--azul);border-bottom:2px solid var(--azul-cl);padding-bottom:3px;margin:0 0 6px;">PARTE 5 · DA ASSOCIAÇÃO À COOPERATIVA</div>
+      <div style="font-family:'Poppins',sans-serif;font-weight:700;color:var(--azul);border-bottom:2px solid var(--azul-cl);padding-bottom:3px;margin:0 0 6px;">PARTE 5 · ASSOCIAÇÃO E COOPERATIVA</div>
       <div style="margin-bottom:4px;">42. Associação ou cooperativa: o que muda</div>
       <div style="margin-bottom:4px;">43. Dez oportunidades da transformação</div>
       <div style="margin-bottom:4px;">44. Dez desafios e como reduzi-los</div>
@@ -2640,8 +2913,8 @@ svg{ display:block; }
         <p style="font-size:9pt;margin-bottom:6px">As Partes 1 e 2 explicam <b>onde a associação está</b>.
         A Parte 3 mostra <b>o que outras organizações fizeram</b> diante dos mesmos gargalos.
         A Parte 4 traduz tudo em <b>metas e prazos</b>.</p>
-        <p style="font-size:9pt;margin-bottom:0">A Parte 5 responde à pergunta que a diretoria colocou na mesa:
-        <b>vale a pena virar cooperativa</b>, o que isso destrava, o que passa a custar e em que ordem fazer.</p>
+        <p style="font-size:9pt;margin-bottom:0">A Parte 5 nasceu da pergunta <b>vale a pena virar cooperativa?</b> Com a cooperativa
+        constituída em maio de 2026, orienta o que ela destrava, o que passa a custar e como consolidar.</p>
       </div>
       <div style="text-align:center;margin-top:14px">
         <svg viewBox="0 0 120 34" style="width:70%;height:auto;margin:0 auto">
@@ -2690,8 +2963,8 @@ svg{ display:block; }
     <li><b>Com parceiros e financiadores:</b> as páginas de modelo, indicadores e plano de ação funcionam como
     resumo executivo do projeto da associação.</li>
     <li><b>Na formação de novos associados:</b> Parte 3, especialmente qualidade, custos e mercados institucionais.</li>
-    <li><b>Na decisão sobre virar cooperativa:</b> Parte 5, aplicando o teste de prontidão do capítulo 47 em reunião
-    de diretoria antes de convocar qualquer assembleia de constituição.</li>
+    <li><b>Na consolidação da cooperativa:</b> Parte 5, usando o teste de prontidão do capítulo 47 como checklist
+    do primeiro ano da cooperativa, constituída em maio de 2026.</li>
   </ul>
 
   <div class="box">
@@ -2994,9 +3267,10 @@ svg{ display:block; }
 <div class="page" data-sec="Parte 1 · O contexto">
   <div class="tag">CAPÍTULO 4</div>
   <div class="eyebrow">Identidade</div>
-  <h2>Quem é a Associação Abrinco</h2>
+  <h2>Quem é a Abrinco</h2>
   <div class="rule"></div>
-  <p>A Associação Comunitária do Brinco existe desde <b>2001</b> e é hoje dirigida por Antônio José da Cruz
+  <p>A Associação Comunitária do Brinco existe desde <b>2001</b> e, desde maio de 2026, atua também como
+  <b>cooperativa</b> (página seguinte). É dirigida por Antônio José da Cruz
   (<b>Zé do Brinco</b>) e Elizete da Silva. Sediada em Maragogipe, no Território de Identidade Recôncavo, dedica-se à produção e
   comercialização de derivados de mandioca com foco em qualidade e sustentabilidade, gerando renda para
   <b>74 famílias agricultoras</b> e articulando apoio técnico, financeiro e acesso a mercados com UFRB, Embrapa
@@ -3067,6 +3341,54 @@ svg{ display:block; }
   </table>
 </div>
 
+
+<!-- ============ ATUALIZAÇÃO 2026 · ASSOCIAÇÃO E COOPERATIVA ============ -->
+<div class="page cream" data-sec="Parte 1 · O contexto" data-pv-id="coop-hoje">
+  <div class="tag">ATUALIZAÇÃO · 2026</div>
+  <div class="eyebrow">Identidade jurídica</div>
+  <h2>A Abrinco hoje: associação e cooperativa</h2>
+  <div class="rule"></div>
+  <p>Em <b>22 de maio de 2026</b>, a Abrinco deu o passo discutido na Parte 5 deste e-book e constituiu a
+  <b>Cooperativa da Agricultura Familiar e Desenvolvimento Sustentável do Estado da Bahia — Abrinco</b>.
+  A <b>Associação Comunitária do Brinco não deixou de existir</b>: a Abrinco passa a atuar com duas pessoas
+  jurídicas, cada uma com seu papel — o arranjo que o Capítulo 47 aponta como o mais estável na agricultura familiar.</p>
+
+  <h3>Ficha da cooperativa</h3>
+  <table class="alt">
+    <tr><th style="width:40mm">Item</th><th>Registro</th></tr>
+    <tr><td>Razão social</td><td>Cooperativa da Agricultura Familiar e Desenvolvimento Sustentável do Estado da Bahia Abrinco</td></tr>
+    <tr><td>CNPJ</td><td>66.989.079/0001-33 · situação cadastral ativa</td></tr>
+    <tr><td>Fundação</td><td>22 de maio de 2026</td></tr>
+    <tr><td>Sede</td><td>Maragogipe, Bahia · Território de Identidade Recôncavo</td></tr>
+    <tr><td>Atuação principal</td><td>Comércio atacadista e beneficiamento de produtos da agricultura familiar: derivados de mandioca e aipim e itens minimamente processados a vácuo, como abóbora, inhame e jaca</td></tr>
+    <tr><td>Objetivo</td><td>Ampliar a geração de renda, fortalecer a autonomia de cerca de 60 famílias de agricultores associados e impulsionar a comercialização dos produtos no estado</td></tr>
+  </table>
+
+  <h3>Duas pessoas jurídicas, um só projeto</h3>
+  <div class="grid2" style="margin:8px 0 10px;">
+    <div class="box green" style="margin:0"><span class="lbl">Associação · desde 2001</span>
+      <p style="margin-bottom:0">Papel social e de representação: projetos, convênios, formação e relação com o poder público e a comunidade do Brinco.</p></div>
+    <div class="box blue" style="margin:0"><span class="lbl">Cooperativa · desde 2026</span>
+      <p style="margin-bottom:0">Papel econômico: comprar a raiz dos cooperados, processar, vender, faturar e distribuir as sobras.</p></div>
+  </div>
+
+  <div class="box">
+    <span class="lbl">Como ler o restante deste e-book</span>
+    <p style="margin-bottom:0">Onde o texto diz “a associação” nas funções comerciais — comprar raiz, processar, vender, faturar,
+    disputar chamadas públicas —, leia “a cooperativa”. Em representação, projetos e convênios, a associação segue responsável.</p>
+  </div>
+
+  <div class="box green">
+    <span class="lbl">Matéria-prima: só mandioca de mesa</span>
+    <p style="margin-bottom:0">A Abrinco trabalha exclusivamente com <b>mandioca de mesa (aipim)</b>. Não processa mandioca brava,
+    não produz fécula industrial e não compra nem importa fécula: goma, tapioca granulada, massa e farinha saem da mesma raiz
+    de mesa entregue pelas famílias.</p>
+  </div>
+
+  <p class="src">Fontes: consulta pública do CNPJ 66.989.079/0001-33 (Serasa Experian); Governo da Bahia / Central das Notícias,
+  ago. 2025; Slow Food Brasil. As 74 famílias citadas nos capítulos anteriores são as beneficiadas pela produção em 2025;
+  as cerca de 60 correspondem aos agricultores associados indicados pelas fontes da cooperativa.</p>
+</div>
 <!-- ============ CAP 4 (CONT.) · A ABRINCO EM NÚMEROS ============ -->
 <div class="page cream" data-sec="Parte 1 · O contexto">
   <div class="tag">CAPÍTULO 4 ·</div>
@@ -3096,33 +3418,39 @@ svg{ display:block; }
     </div>
   </div>
 
-  <h3>Linha do tempo da associação</h3>
+  <h3>Linha do tempo da Abrinco</h3>
   <svg viewBox="0 0 520 96" style="width:100%; margin:2px 0 4px;">
     <line x1="14" y1="34" x2="506" y2="34" stroke="#E0A458" stroke-width="2"/>
-    <g font-family="Poppins" font-size="8.4">
+    <g font-family="Poppins" font-size="7.8">
       <g>
-        <circle cx="40" cy="34" r="7" fill="#2E7D4F"/>
-        <text x="40" y="20" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1D5233">2001</text>
-        <text x="40" y="54" text-anchor="middle" fill="#33302C">Criação do</text>
-        <text x="40" y="65" text-anchor="middle" fill="#33302C">coletivo</text>
+        <circle cx="46" cy="34" r="7" fill="#2E7D4F"/>
+        <text x="46" y="20" text-anchor="middle" font-size="9.2" font-weight="700" fill="#1D5233">2001</text>
+        <text x="46" y="54" text-anchor="middle" fill="#33302C">Criação do</text>
+        <text x="46" y="65" text-anchor="middle" fill="#33302C">coletivo</text>
       </g>
       <g>
-        <circle cx="170" cy="34" r="7" fill="#E0A458"/>
-        <text x="170" y="20" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1D5233">Agroindústria</text>
-        <text x="170" y="54" text-anchor="middle" fill="#33302C">R$ 300 mil e entrada</text>
-        <text x="170" y="65" text-anchor="middle" fill="#33302C">forte na mandiocultura</text>
+        <circle cx="152" cy="34" r="7" fill="#E0A458"/>
+        <text x="152" y="20" text-anchor="middle" font-size="9.2" font-weight="700" fill="#1D5233">Agroindústria</text>
+        <text x="152" y="54" text-anchor="middle" fill="#33302C">R$ 300 mil e entrada</text>
+        <text x="152" y="65" text-anchor="middle" fill="#33302C">na mandiocultura</text>
       </g>
       <g>
-        <circle cx="310" cy="34" r="7" fill="#B0563A"/>
-        <text x="310" y="20" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1D5233">Consolidação</text>
-        <text x="310" y="54" text-anchor="middle" fill="#33302C">Massa de aipim, goma e farinha</text>
-        <text x="310" y="65" text-anchor="middle" fill="#33302C">conquistam o público baiano</text>
+        <circle cx="258" cy="34" r="7" fill="#B0563A"/>
+        <text x="258" y="20" text-anchor="middle" font-size="9.2" font-weight="700" fill="#1D5233">Consolidação</text>
+        <text x="258" y="54" text-anchor="middle" fill="#33302C">Massa, goma e farinha</text>
+        <text x="258" y="65" text-anchor="middle" fill="#33302C">ganham a Bahia</text>
       </g>
       <g>
-        <circle cx="462" cy="34" r="7" fill="#2A6F8E"/>
-        <text x="462" y="20" text-anchor="middle" font-size="9.4" font-weight="700" fill="#1D5233">Diversificação</text>
-        <text x="462" y="54" text-anchor="middle" fill="#33302C">Minimamente processados</text>
-        <text x="462" y="65" text-anchor="middle" fill="#33302C">e apoio da CAR</text>
+        <circle cx="364" cy="34" r="7" fill="#2A6F8E"/>
+        <text x="364" y="20" text-anchor="middle" font-size="9.2" font-weight="700" fill="#1D5233">Diversificação</text>
+        <text x="364" y="54" text-anchor="middle" fill="#33302C">Minimamente</text>
+        <text x="364" y="65" text-anchor="middle" fill="#33302C">processados e CAR</text>
+      </g>
+      <g>
+        <circle cx="466" cy="34" r="7" fill="#1F5F7A"/>
+        <text x="466" y="20" text-anchor="middle" font-size="9.2" font-weight="700" fill="#1D5233">Cooperativa</text>
+        <text x="466" y="54" text-anchor="middle" fill="#33302C">Constituída em</text>
+        <text x="466" y="65" text-anchor="middle" fill="#33302C">22 de maio de 2026</text>
       </g>
     </g>
     <text x="14" y="88" font-family="Lora" font-size="8.4" fill="#6B6259" font-style="italic">
@@ -4463,7 +4791,7 @@ svg{ display:block; }
       <rect x="102" y="142" width="74" height="40" rx="3" fill="#F2F8F3" stroke="#C7E0CB"/>
       <text x="139" y="158" text-anchor="middle" font-family="Poppins" font-size="6.6" font-weight="700" fill="#1D5233">AGRICULTURA</text>
       <text x="139" y="168" text-anchor="middle" font-family="Poppins" font-size="6.6" font-weight="700" fill="#1D5233">FAMILIAR</text>
-      <text x="24" y="194" font-family="Lora" font-size="6.4" fill="#6B6259">Associação Abrinco · CNPJ 00.000.000/0001-00 · SAC (75) 0000-0000</text>
+      <text x="24" y="194" font-family="Lora" font-size="6.4" fill="#6B6259">Cooperativa Abrinco · CNPJ 66.989.079/0001-33 · SAC (75) 0000-0000</text>
       <text x="100" y="205" text-anchor="middle" font-family="Poppins" font-size="6" fill="#B0563A">modelo ilustrativo — validar com a vigilância sanitária</text>
     </svg>
   </div>
@@ -5798,7 +6126,7 @@ svg{ display:block; }
       <p><b>3 · Aipim palito congelado.</b> Rodar o Capítulo 32 como investimento: câmara fria no campo de investimento, rendimento e perda próprios do palito, e comparar TIR e TMA.</p>
     </div>
     <div>
-      <p><b>4 · Decisão sobre virar cooperativa.</b> Trocar o enquadramento tributário e comparar a alíquota efetiva nas duas situações, junto ao teste de prontidão do Capítulo 47.</p>
+      <p><b>4 · Operação como cooperativa.</b> Selecionar o enquadramento de cooperativa e comparar a alíquota efetiva com a da operação pela associação, usando o Capítulo 47 como checklist.</p>
       <p><b>5 · Painel mensal.</b> Alimentar os indicadores do Capítulo 35 com rendimento, custo por quilo e ponto de equilíbrio saídos da mesma base de dados.</p>
     </div>
   </div>
@@ -6067,17 +6395,52 @@ svg{ display:block; }
   </svg>
   <div style="position:absolute; top:108mm; left:20mm; right:20mm; color:#fff;">
     <div style="font-family:'Poppins',sans-serif; font-size:60pt; font-weight:700; line-height:1; color:rgba(242,193,78,.9);">05</div>
-    <div style="font-family:'Poppins',sans-serif; font-size:26pt; font-weight:700; margin-top:4px;">Da associação<br>à cooperativa</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:26pt; font-weight:700; margin-top:4px;">Associação<br>e cooperativa</div>
     <div style="width:60px;height:4px;background:#F2C14E;border-radius:2px;margin:12px 0;"></div>
     <div style="font-family:'Lora',serif; font-size:11pt; opacity:.95; max-width:112mm;">
-      O que muda de fato, quais portas se abrem, quais contas passam a existir
-      e como fazer a travessia sem perder os contratos e a confiança do grupo.
+      Constituída em maio de 2026, a cooperativa agora caminha ao lado da associação:
+      o que muda de fato, quais portas se abrem, quais contas passam a existir e como consolidar a travessia.
     </div>
   </div>
 </div>
 
+
+<!-- ============ ATUALIZAÇÃO 2026 · COMO USAR A PARTE 5 ============ -->
+<div class="page tint" data-sec="Parte 5 · Associação e cooperativa" data-pv-id="parte5-atualizacao">
+  <div class="tag t4">ATUALIZAÇÃO · MAIO 2026</div>
+  <div class="eyebrow">A decisão foi tomada</div>
+  <h2>A cooperativa já existe: como usar a Parte 5 agora</h2>
+  <div class="rule"></div>
+  <p>Esta parte foi escrita quando a pergunta ainda estava na mesa. A resposta veio em <b>22 de maio de 2026</b>:
+  a Abrinco constituiu a cooperativa como <b>nova pessoa jurídica</b> — o “Caminho B” do Capítulo 45, o de menor
+  risco de travamento — e manteve a associação viva, com papel social e de representação.</p>
+  <p>Os capítulos seguintes deixam de ser estudo de viabilidade e passam a funcionar como
+  <b>guia de consolidação do primeiro ano</b>.</p>
+
+  <table class="alt">
+    <tr><th style="width:42mm">Capítulo</th><th>Como ler a partir de agora</th></tr>
+    <tr><td>42 · O que muda</td><td>Continua válido: explica por que a cooperativa assume o papel econômico e a associação o social.</td></tr>
+    <tr><td>43 · Oportunidades</td><td>Vira lista de metas: quais das dez portas a cooperativa já abriu e quais faltam.</td></tr>
+    <tr><td>44 · Desafios</td><td>Vira matriz de riscos ativos: cada desafio ganha responsável e prazo.</td></tr>
+    <tr><td>45 · Caminho jurídico</td><td>O Caminho B foi o adotado. A lista de registros serve para conferir o que já está concluído.</td></tr>
+    <tr><td>46 · Tributos e custos</td><td>Passa a valer de fato: sem Simples Nacional e com separação entre ato cooperativo e não cooperativo.</td></tr>
+    <tr><td>47 · Teste de prontidão</td><td>Vira checklist de consolidação: as dez perguntas devem ter resposta “sim” até o fim do primeiro exercício.</td></tr>
+    <tr><td>48 · Rota de transição</td><td>Assembleia de constituição e CNPJ, do terceiro trimestre da rota, estão concluídos. O restante do T3 e todo o T4 ficam como próximos passos.</td></tr>
+  </table>
+
+  <div class="box blue">
+    <span class="lbl">Conferir nos próximos meses</span>
+    <ul class="chk" style="margin-bottom:0">
+      <li>Registro na OCB/Sescoop-BA.</li>
+      <li>CAF Jurídica em nome da cooperativa, requisito para PNAE, PAA e Pronaf.</li>
+      <li>Licença sanitária e rótulos no CNPJ da cooperativa.</li>
+      <li>Contratos em curso da associação: quem entrega, fatura e responde até a migração.</li>
+      <li>Contador com experiência em cooperativas e plano de contas próprio.</li>
+    </ul>
+  </div>
+</div>
 <!-- ============ CAP 38 · ASSOCIAÇÃO x COOPERATIVA ============ -->
-<div class="page cream" data-sec="Parte 5 · Da associação à cooperativa">
+<div class="page cream" data-sec="Parte 5 · Associação e cooperativa">
   <div class="tag t3">CAPÍTULO 42</div>
   <div class="eyebrow">Ponto de partida</div>
   <h2>Associação ou cooperativa:<br>o que muda de fato</h2>
@@ -6110,7 +6473,7 @@ svg{ display:block; }
 </div>
 
 <!-- ============ CAP 39 · OPORTUNIDADES ============ -->
-<div class="page" data-sec="Parte 5 · Da associação à cooperativa">
+<div class="page" data-sec="Parte 5 · Associação e cooperativa">
   <div class="tag t3">CAPÍTULO 43</div>
   <div class="eyebrow">O que se ganha</div>
   <h2>Dez oportunidades da<br>transformação em cooperativa</h2>
@@ -6138,7 +6501,7 @@ svg{ display:block; }
 </div>
 
 <!-- ============ CAP 40 · DESAFIOS ============ -->
-<div class="page tint" data-sec="Parte 5 · Da associação à cooperativa">
+<div class="page tint" data-sec="Parte 5 · Associação e cooperativa">
   <div class="tag t3">CAPÍTULO 44</div>
   <div class="eyebrow">O que se enfrenta</div>
   <h2>Dez desafios reais —<br>e como reduzir cada um</h2>
@@ -6170,7 +6533,7 @@ svg{ display:block; }
 </div>
 
 <!-- ============ CAP 41 · CAMINHO JURÍDICO ============ -->
-<div class="page" data-sec="Parte 5 · Da associação à cooperativa">
+<div class="page" data-sec="Parte 5 · Associação e cooperativa">
   <div class="tag t3">CAPÍTULO 45</div>
   <div class="eyebrow">Passo a passo</div>
   <h2>O caminho jurídico<br>da constituição</h2>
@@ -6212,7 +6575,7 @@ svg{ display:block; }
 </div>
 
 <!-- ============ CAP 42 · TRIBUTOS E CUSTOS ============ -->
-<div class="page cream" data-sec="Parte 5 · Da associação à cooperativa">
+<div class="page cream" data-sec="Parte 5 · Associação e cooperativa">
   <div class="tag t3">CAPÍTULO 46</div>
   <div class="eyebrow">A conta da mudança</div>
   <h2>Sobras, fundos, tributos<br>e custo de manutenção</h2>
@@ -6251,7 +6614,7 @@ svg{ display:block; }
 </div>
 
 <!-- ============ CAP 43 · TESTE DE PRONTIDÃO ============ -->
-<div class="page" data-sec="Parte 5 · Da associação à cooperativa">
+<div class="page" data-sec="Parte 5 · Associação e cooperativa">
   <div class="tag t3">CAPÍTULO 47</div>
   <div class="eyebrow">Decisão</div>
   <h2>Teste de prontidão:<br>já é hora?</h2>
@@ -6298,7 +6661,7 @@ svg{ display:block; }
 </div>
 
 <!-- ============ CAP 44 · ROTA DE TRANSIÇÃO ============ -->
-<div class="page tint" data-sec="Parte 5 · Da associação à cooperativa">
+<div class="page tint" data-sec="Parte 5 · Associação e cooperativa">
   <div class="tag t3">CAPÍTULO 48</div>
   <div class="eyebrow">Execução</div>
   <h2>Rota de transição<br>em quatro trimestres</h2>
@@ -6401,10 +6764,10 @@ svg{ display:block; }
 
   <div class="box blue">
     <span class="lbl">Leitura para a Abrinco</span>
-    <p style="margin-bottom:0">A associação trabalha as duas pontas: aipim de mesa embalado a vácuo e derivados
-    (goma, tapioca granulada, farinha, massa de carimã). Isso exige controlar duas cadeias de matéria-prima com
-    critérios diferentes de compra — variedade, ciclo e destino precisam estar registrados já na ficha de entrada
-    de raiz apresentada no Capítulo 38.</p>
+    <p style="margin-bottom:0">A Abrinco trabalha <b>exclusivamente com mandioca de mesa</b> (aipim): o aipim embalado
+    a vácuo e todos os derivados — goma, tapioca granulada, farinha e massa de carimã — saem da mesma raiz.
+    Não processa mandioca brava, não produz fécula industrial e não compra nem importa fécula. Cultivar, ciclo e
+    destino de cada lote ficam registrados na ficha de entrada de raiz do Capítulo 38.</p>
   </div>
 </div>
 
@@ -6435,8 +6798,8 @@ svg{ display:block; }
       <g>
         <rect x="218" y="30" width="104" height="46" rx="8" fill="#FDF3E2" stroke="#E0A458"/>
         <text x="270" y="48" text-anchor="middle" font-size="8.6" font-weight="700" fill="#8A5A20">3 · Processamento</text>
-        <text x="270" y="61" text-anchor="middle" fill="#33302C">Ralador, prensa, extrator</text>
-        <text x="270" y="70" text-anchor="middle" fill="#33302C">de fécula, fornos e chapas</text>
+        <text x="270" y="61" text-anchor="middle" fill="#33302C">Ralador, prensa, extração</text>
+        <text x="270" y="70" text-anchor="middle" fill="#33302C">da goma, fornos e chapas</text>
       </g>
       <g>
         <rect x="332" y="30" width="100" height="46" rx="8" fill="#EAF3EC" stroke="#2E7D4F"/>
@@ -6685,7 +7048,7 @@ svg{ display:block; }
   <table class="alt2">
     <tr><th style="width:52mm">Padrão da cartilha</th><th>Onde entra no modelo de negócios</th></tr>
     <tr><td>Processar em até 36 horas</td><td>Programação de colheita com os 74 associados e agendamento de entrega — bloco de parcerias-chave e atividades-chave</td></tr>
-    <tr><td>Ficha de entrada com procedência, peso e qualidade</td><td>Modelo de controle de entrada de raiz do Capítulo 38, agora com o campo “variedade: mesa ou brava”</td></tr>
+    <tr><td>Ficha de entrada com procedência, peso e qualidade</td><td>Modelo de controle de entrada de raiz do Capítulo 38, agora com os campos “cultivar de mesa” e “ciclo”</td></tr>
     <tr><td>Diluição 100 ml / 10 L e imersão de 15 minutos</td><td>Procedimento fixo de sanitização, afixado na parede da área de pré-processamento</td></tr>
     <tr><td>Torra 90 °C → 160 °C e umidade ≤ 13%</td><td>Ficha de lote com registro de temperatura e horário de cada fornada</td></tr>
     <tr><td>Rotulagem conforme IN 52/2011</td><td>Revisão dos rótulos atuais antes de ampliar a venda para redes e compras públicas</td></tr>
@@ -6824,7 +7187,8 @@ svg{ display:block; }
     </g>
   </svg>
   <div style="position:absolute; top:180mm; left:22mm; right:22mm; color:#fff; text-align:center;">
-    <div style="font-family:'Poppins',sans-serif; font-size:16pt; font-weight:700;">Associação Abrinco</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:16pt; font-weight:700;">Abrinco</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:8.6pt; margin-top:4px; opacity:.92;">Associação Comunitária do Brinco · Cooperativa Abrinco</div>
     <div style="font-family:'Poppins',sans-serif; font-size:9pt; letter-spacing:3px; color:#F2C14E; margin-top:6px;">MARAGOGIPE · BAHIA</div>
     <div style="width:50px;height:3px;background:rgba(255,255,255,.4);margin:16px auto;"></div>
     <div style="font-family:'Lora',serif; font-size:10.5pt; opacity:.9; max-width:120mm; margin:0 auto;">
@@ -6893,52 +7257,254 @@ svg{ display:block; }
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-@media screen {
-  html, body { width:100%; margin:0; }
-  body { font-size: clamp(15px, 1.05vw, 19px); }
-  .page {
-    width:100% !important; max-width:100% !important;
-    height:auto !important; min-height:0 !important;
-    overflow:visible !important;
-    padding: clamp(18px, 4vw, 56px) !important;
-    page-break-after:auto;
-  }
-  .page > .foot {
-    position:static !important; left:auto; right:auto; bottom:auto;
-    margin-top:28px;
-  }
-  .tag { border-bottom-left-radius:14px; }
-  img, svg { max-width:100%; height:auto; }
-  table { display:block; width:100%; overflow-x:auto; }
-  .grid2, .grid3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  h2 { font-size: clamp(24px, 2.6vw, 40px); }
-  h3 { font-size: clamp(17px, 1.5vw, 24px); }
-}
+
 </style>
 
 <style>
-@media screen {
-  /* --- exceção para a capa (e contracapa, se houver) --- */
-  .cover, .page.cover, .capa, .page.capa, .page:first-of-type {
-    padding: 0 !important;
-    height: auto !important;
-    min-height: 100svh !important;   /* fallback: ocupa a tela */
-    aspect-ratio: 210 / 297;         /* mantém a proporção A4 */
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    position: relative !important;   /* âncora dos textos absolutos */
-    display: block !important;
-    overflow: hidden !important;
-  }
-  /* se a capa tiver <img> em vez de background */
-  .cover img, .capa img, .page:first-of-type > img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-}
+
 </style>
 
 
+
+<button class="pv-seta esq" id="pv-ant" type="button" aria-label="Página anterior">&#8249;</button>
+<button class="pv-seta dir" id="pv-prox" type="button" aria-label="Próxima página">&#8250;</button>
+<div id="pv-dica">Setas ← → mudam de página · + e − ajustam o zoom · 0 ajusta a página · F tela cheia</div>
+<div id="pv-barra" role="toolbar" aria-label="Controles da apresentação">
+  <div class="grupo"><select id="pv-sumario" aria-label="Ir para a página"></select></div>
+  <div class="sep opcional2"></div>
+  <button id="pv-b-ant" type="button" aria-label="Página anterior">&#9664;</button>
+  <input type="range" id="pv-faixa" min="1" max="1" value="1" aria-label="Barra de páginas">
+  <span id="pv-cont">1 / 1</span>
+  <button id="pv-b-prox" type="button" aria-label="Próxima página">&#9654;</button>
+  <div class="sep"></div>
+  <div class="grupo">
+    <button id="pv-zmenos" type="button" aria-label="Diminuir zoom">&#8722;</button>
+    <span id="pv-zoomv">100%</span>
+    <button id="pv-zmais" type="button" aria-label="Aumentar zoom">+</button>
+    <button id="pv-fpag" type="button" class="opcional" title="Ajustar a página inteira à tela (0)">Página</button>
+    <button id="pv-flarg" type="button" class="opcional" title="Ajustar à largura (W)">Largura</button>
+  </div>
+  <div class="sep opcional"></div>
+  <div class="grupo opcional2">
+    <button id="pv-modo-u" type="button" title="Uma página por vez">Folhear</button>
+    <button id="pv-modo-c" type="button" title="Todas as páginas em rolagem contínua">Rolagem</button>
+  </div>
+  <button id="pv-cheia" type="button" title="Tela cheia (F)" aria-label="Tela cheia">&#x26F6;</button>
+</div>
+<script id="pv-script">
+(function(){
+  "use strict";
+  var paginas=[].slice.call(document.querySelectorAll('.page'));
+  if(!paginas.length)return;
+  var W=paginas[0].offsetWidth||794, H=paginas[0].offsetHeight||1123;
+  var N=paginas.length, atual=0, zoom=1, ajuste='pagina', modo='unica';
+  var $=function(id){return document.getElementById(id)};
+
+  /* palco e trilho */
+  var palco=document.createElement('div'); palco.id='pv-palco'; palco.tabIndex=0;
+  var trilho=document.createElement('div'); trilho.id='pv-trilho'; trilho.className='unica';
+  palco.appendChild(trilho);
+  document.body.insertBefore(palco,document.body.firstChild);
+  var slots=paginas.map(function(p,i){
+    var s=document.createElement('div'); s.className='pv-slot'; s.setAttribute('data-n',i+1);
+    trilho.appendChild(s); s.appendChild(p); return s;
+  });
+
+  /* títulos para o sumário */
+  function limpa(t){return (t||'').replace(/\s+/g,' ').trim()}
+  var titulos=paginas.map(function(p,i){
+    if(i===0)return 'Capa';
+    if(i===N-1)return 'Contracapa';
+    var h=p.querySelector('h2');
+    if(h){var c=h.cloneNode(true);[].forEach.call(c.querySelectorAll('br'),function(b){b.replaceWith(' ')});
+      return limpa(c.textContent);}
+    var sec=p.getAttribute('data-sec')||'';
+    var grande=[].slice.call(p.querySelectorAll('div')).filter(function(d){
+      return /font-size:\s*2[0-9]pt/.test(d.getAttribute('style')||'')})[0];
+    if(grande){grande=grande.cloneNode(true);
+      [].forEach.call(grande.querySelectorAll('br'),function(b){b.replaceWith(' ')});}
+    return 'Abertura · '+(grande?limpa(grande.textContent):sec);
+  });
+  var sel=$('pv-sumario');
+  sel.innerHTML=titulos.map(function(t,i){
+    return '<option value="'+i+'">'+(i+1)+' · '+t.replace(/</g,'&lt;')+'</option>'}).join('');
+  $('pv-faixa').max=N;
+
+  /* escala */
+  function zoomAjustado(){
+    var estreito=palco.clientWidth<700;
+    var pw=palco.clientWidth-(estreito?20:(modo==='unica'?150:60)), ph=palco.clientHeight-(estreito?28:52);
+    if(ajuste==='largura')return Math.max(.2,Math.min(4,pw/W));
+    if(modo==='continua')return Math.max(.2,Math.min(1.1,pw/W));
+    return Math.max(.2,Math.min(pw/W,ph/H));
+  }
+  function aplicarEscala(){
+    if(ajuste!=='manual')zoom=zoomAjustado();
+    slots.forEach(function(s,i){
+      s.style.width=Math.round(W*zoom)+'px'; s.style.height=Math.round(H*zoom)+'px';
+      paginas[i].style.transform='scale('+zoom+')';
+    });
+    $('pv-zoomv').textContent=Math.round(zoom*100)+'%';
+    $('pv-fpag').classList.toggle('ativo',ajuste==='pagina');
+    $('pv-flarg').classList.toggle('ativo',ajuste==='largura');
+  }
+  function mudarZoom(fator){
+    var cx=(palco.scrollLeft+palco.clientWidth/2)/Math.max(1,palco.scrollWidth),
+        cy=(palco.scrollTop+palco.clientHeight/2)/Math.max(1,palco.scrollHeight);
+    ajuste='manual'; zoom=Math.max(.2,Math.min(4,zoom*fator));
+    aplicarEscala();
+    palco.scrollLeft=cx*palco.scrollWidth-palco.clientWidth/2;
+    palco.scrollTop=cy*palco.scrollHeight-palco.clientHeight/2;
+    dica(Math.round(zoom*100)+'%');
+  }
+
+  /* navegação */
+  function avisar(){
+    try{ if(window.parent&&window.parent!==window)
+      window.parent.postMessage({tipo:'pv-pagina',n:atual+1,total:N,titulo:titulos[atual]},'*'); }catch(e){}
+  }
+  function atualizarControles(){
+    $('pv-cont').textContent=(atual+1)+' / '+N;
+    $('pv-faixa').value=atual+1; sel.value=atual;
+    var ini=atual===0, fim=atual===N-1;
+    $('pv-ant').disabled=ini; $('pv-b-ant').disabled=ini;
+    $('pv-prox').disabled=fim; $('pv-b-prox').disabled=fim;
+    avisar();
+  }
+  function ir(n,origem){
+    n=Math.max(0,Math.min(N-1,n));
+    var dir=n>=atual?'entra-d':'entra-e';
+    var anterior=atual; atual=n;
+    if(modo==='unica'){
+      slots.forEach(function(s,i){s.classList.toggle('atual',i===n); s.classList.remove('entra-d','entra-e')});
+      if(anterior!==n&&origem!=='inicio'){void slots[n].offsetWidth; slots[n].classList.add(dir);}
+      palco.scrollTop=0; palco.scrollLeft=Math.max(0,(palco.scrollWidth-palco.clientWidth)/2);
+    }else if(origem!=='rolagem'){
+      travaRolagem=true;
+      palco.scrollTop=slots[n].offsetTop-14;
+      setTimeout(function(){travaRolagem=false},120);
+    }
+    atualizarControles();
+  }
+  function mudarModo(m){
+    if(m===modo)return;
+    var pag=atual; modo=m;
+    trilho.className=m; ajuste=(ajuste==='manual')?'manual':'pagina';
+    $('pv-modo-u').classList.toggle('ativo',m==='unica');
+    $('pv-modo-c').classList.toggle('ativo',m==='continua');
+    aplicarEscala();
+    slots.forEach(function(s,i){s.classList.toggle('atual',i===pag)});
+    ir(pag,'modo');
+    dica(m==='unica'?'Modo folhear: uma página por vez':'Modo rolagem: todas as páginas em sequência');
+  }
+
+  /* rolagem contínua: página atual acompanha a rolagem */
+  var travaRolagem=false, agenda=null;
+  palco.addEventListener('scroll',function(){
+    if(modo!=='continua'||travaRolagem)return;
+    if(agenda)return;
+    agenda=requestAnimationFrame(function(){
+      agenda=null;
+      var meio=palco.scrollTop+palco.clientHeight*.4, melhor=0;
+      for(var i=0;i<slots.length;i++){ if(slots[i].offsetTop<=meio)melhor=i; else break; }
+      if(melhor!==atual){atual=melhor; atualizarControles();}
+    });
+  },{passive:true});
+
+  /* dica flutuante */
+  var tDica=null;
+  function dica(txt){
+    var d=$('pv-dica'); if(txt)d.textContent=txt;
+    d.classList.remove('some'); clearTimeout(tDica);
+    tDica=setTimeout(function(){d.classList.add('some')},txt?1300:4200);
+  }
+
+  /* controles */
+  $('pv-ant').onclick=$('pv-b-ant').onclick=function(){ir(atual-1)};
+  $('pv-prox').onclick=$('pv-b-prox').onclick=function(){ir(atual+1)};
+  $('pv-faixa').addEventListener('input',function(){ir(+this.value-1,'faixa')});
+  sel.addEventListener('change',function(){ir(+this.value);palco.focus()});
+  $('pv-zmais').onclick=function(){mudarZoom(1.2)};
+  $('pv-zmenos').onclick=function(){mudarZoom(1/1.2)};
+  $('pv-fpag').onclick=function(){ajuste='pagina';aplicarEscala();ir(atual,'modo')};
+  $('pv-flarg').onclick=function(){ajuste='largura';aplicarEscala();ir(atual,'modo')};
+  $('pv-modo-u').onclick=function(){mudarModo('unica')};
+  $('pv-modo-c').onclick=function(){mudarModo('continua')};
+  function telaCheia(){
+    var el=document.documentElement;
+    try{
+      if(!document.fullscreenElement){(el.requestFullscreen||el.webkitRequestFullscreen).call(el)}
+      else{(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
+    }catch(e){dica('Tela cheia indisponível aqui')}
+  }
+  $('pv-cheia').onclick=telaCheia;
+
+  document.addEventListener('keydown',function(e){
+    if(e.target&&(e.target.tagName==='SELECT'||e.target.tagName==='INPUT')&&e.key!=='Escape')return;
+    var k=e.key;
+    if(k==='ArrowRight'||(modo==='unica'&&(k==='PageDown'||k===' '))){ir(atual+1);e.preventDefault()}
+    else if(k==='ArrowLeft'||(modo==='unica'&&k==='PageUp')){ir(atual-1);e.preventDefault()}
+    else if(k==='Home'){ir(0);e.preventDefault()}
+    else if(k==='End'){ir(N-1);e.preventDefault()}
+    else if(k==='+'||k==='='){mudarZoom(1.2);e.preventDefault()}
+    else if(k==='-'||k==='_'){mudarZoom(1/1.2);e.preventDefault()}
+    else if(k==='0'){ajuste='pagina';aplicarEscala();ir(atual,'modo')}
+    else if(k==='w'||k==='W'){ajuste='largura';aplicarEscala();ir(atual,'modo')}
+    else if(k==='f'||k==='F'){telaCheia()}
+  });
+  palco.addEventListener('wheel',function(e){
+    if(e.ctrlKey){e.preventDefault(); mudarZoom(e.deltaY<0?1.1:1/1.1);}
+  },{passive:false});
+
+  /* deslizar no celular (modo folhear, sem zoom além da tela) */
+  var tx=null,ty=null;
+  palco.addEventListener('touchstart',function(e){
+    if(e.touches.length!==1){tx=null;return}
+    tx=e.touches[0].clientX; ty=e.touches[0].clientY;
+  },{passive:true});
+  palco.addEventListener('touchend',function(e){
+    if(tx===null||modo!=='unica')return;
+    var dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    var semRolagemH=palco.scrollWidth<=palco.clientWidth+2;
+    if(semRolagemH&&Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.4)ir(atual+(dx<0?1:-1));
+    tx=null;
+  },{passive:true});
+
+  var tRes=null;
+  window.addEventListener('resize',function(){
+    clearTimeout(tRes); tRes=setTimeout(function(){aplicarEscala(); ir(atual,'modo')},120);
+  });
+
+  /* API para a página hospedeira (simulador) */
+  window.pvIr=function(n){ir(n-1)};
+  window.pvIrId=function(id){
+    for(var i=0;i<N;i++)if(paginas[i].getAttribute('data-pv-id')===id){ir(i);return i+1}
+    return 0;
+  };
+  window.pvIrTitulo=function(txt){
+    var alvo=limpa(txt).toLowerCase();
+    for(var i=0;i<N;i++)if(titulos[i].toLowerCase().indexOf(alvo)>=0){ir(i);return i+1}
+    return 0;
+  };
+  window.pvTitulos=function(){return titulos.slice()};
+  window.addEventListener('message',function(e){
+    var d=e.data||{};
+    if(d.tipo==='pv-ir'&&d.n)ir(d.n-1);
+    else if(d.tipo==='pv-ir-titulo'&&d.titulo)window.pvIrTitulo(d.titulo);
+    else if(d.tipo==='pv-ir-id'&&d.id)window.pvIrId(d.id);
+  });
+
+  /* início */
+  $('pv-modo-u').classList.add('ativo');
+  aplicarEscala();
+  var ini=0;
+  try{var m=/[#&]p=(\d+)/.exec(location.hash||''); if(m)ini=Math.min(N,Math.max(1,+m[1]))-1;}catch(e){}
+  ir(ini,'inicio');
+  if(palco.clientWidth<700)$('pv-dica').textContent='Deslize para os lados ou use as setas para mudar de página';
+  dica();
+  palco.focus();
+})();
+<\/script>
 </body>
 </html>
 </script>
